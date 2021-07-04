@@ -46,8 +46,16 @@ public class LinkedList {
     // здесь будет ваш код очистки всего списка
   }
 
+  private int getCount(Node node) {
+    if (node == null) {
+      return 0;
+    }
+
+    return 1 + getCount(node.next);
+  }
+
   public int count() {
-    return 0; // здесь будет ваш код подсчёта количества элементов в списке
+    return getCount(head); // здесь будет ваш код подсчёта количества элементов в списке
   }
 
   public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
