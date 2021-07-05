@@ -190,20 +190,68 @@ public class LinkedListTest {
     }
   }
 
-//  @Nested
-//  @DisplayName("removeAll method")
-//  class RemoveAllMethod {
-//    @Test
-//    @DisplayName("Should remove one node")
-//    void shouldRemoveOneNode() {
-//      LinkedList list = new LinkedList();
-//
-//      list.addInTail(new Node(1));
-//
-//      list.removeAll(1);
-//
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.find(1));
-//    }
-//  }
+  @Nested
+  @DisplayName("removeAll method")
+  class RemoveAllMethod {
+    @Test
+    @DisplayName("Should remove one node")
+    void shouldRemoveOneNode() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(1));
+    }
+
+    @Test
+    @DisplayName("Should remove several nodes")
+    void shouldRemoveSeveralNodes() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(10));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertEquals(0, list.findAll(1).size());
+    }
+
+    @Test
+    @DisplayName("Should return empty list")
+    void shouldReturnEmptyList() {
+      LinkedList list = new LinkedList();
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(0, list.count());
+    }
+
+    @Test
+    @DisplayName("Should not remove not existing values")
+    void shouldNotRemoveNotExistingValues() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(10));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+
+      list.removeAll(100);
+
+      Assertions.assertEquals(7, list.count());
+      Assertions.assertEquals(0, list.findAll(100).size());
+    }
+  }
 }
