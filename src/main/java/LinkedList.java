@@ -87,6 +87,7 @@ public class LinkedList {
 
   public void clear() {
     // здесь будет ваш код очистки всего списка
+    head = null;
   }
 
   private int getCount(Node node) {

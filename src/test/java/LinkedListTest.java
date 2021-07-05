@@ -254,4 +254,32 @@ public class LinkedListTest {
       Assertions.assertEquals(0, list.findAll(100).size());
     }
   }
+
+  @Nested
+  @DisplayName("clear method")
+  class ClearMethod {
+    @Test
+    @DisplayName("Should clear not empty list")
+    void shouldClearList() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(3));
+
+      list.clear();
+
+      Assertions.assertEquals(0, list.count());
+    }
+
+    @Test
+    @DisplayName("Should clear empty list")
+    void shouldClearEmptyList() {
+      LinkedList list = new LinkedList();
+
+      list.clear();
+
+      Assertions.assertEquals(0, list.count());
+    }
+  }
 }
