@@ -130,5 +130,19 @@ public class LinkedListTest {
       Assertions.assertFalse(result);
       Assertions.assertEquals(3, list.count());
     }
+
+    @Test
+    @DisplayName("Should return empty list")
+    void shouldReturnEmptyList() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+
+      boolean result = list.remove(1);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(1));
+    }
   }
 }

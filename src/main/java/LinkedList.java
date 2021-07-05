@@ -34,7 +34,7 @@ public class LinkedList {
   }
 
   private boolean removeNodeByValue(int value, Node node) {
-    if (node == null || node.next == null) {
+    if (node == null) {
       return false;
     }
 
@@ -42,6 +42,10 @@ public class LinkedList {
       head = node.next;
 
       return true;
+    }
+
+    if (node.next == null) {
+      return false;
     }
 
     if (node.next.value == value) {
@@ -53,7 +57,8 @@ public class LinkedList {
     return removeNodeByValue(value, node.next);
   }
 
-  public boolean remove(int _value) { // здесь будет ваш код удаления одного узла по заданному значению
+  public boolean remove(int _value) {
+    // здесь будет ваш код удаления одного узла по заданному значению
     return removeNodeByValue(_value, head);
   }
 
