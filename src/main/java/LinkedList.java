@@ -27,10 +27,24 @@ public class LinkedList {
     return null;
   }
 
+  private ArrayList<Node> findAllByValue(int value, Node node, ArrayList<Node> accumulator) {
+    if (node == null) {
+      return accumulator;
+    }
+
+    if (node.value == value) {
+      accumulator.add(node);
+    }
+
+    return findAllByValue(value, node.next, accumulator);
+  }
+
   public ArrayList<Node> findAll(int _value) {
     ArrayList<Node> nodes = new ArrayList<Node>();
+
     // здесь будет ваш код поиска всех узлов
-    return nodes;
+
+    return findAllByValue(_value, head, nodes);
   }
 
   private boolean removeNodeByValue(int value, Node node) {
