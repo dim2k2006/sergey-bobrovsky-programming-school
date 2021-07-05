@@ -34,8 +34,14 @@ public class LinkedList {
   }
 
   private boolean removeNodeByValue(int value, Node node) {
-    if (node.next == null) {
+    if (node == null || node.next == null) {
       return false;
+    }
+
+    if (node.value == value) {
+      head = node.next;
+
+      return true;
     }
 
     if (node.next.value == value) {

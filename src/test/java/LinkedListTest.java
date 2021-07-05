@@ -56,14 +56,79 @@ public class LinkedListTest {
       Assertions.assertNull(list.find(18));
     }
 
-    // удалили последний элемент
+    @Test
+    @DisplayName("Should remove last node by value")
+    void shouldRemoveLastNodeByValue() {
+      LinkedList list = new LinkedList();
 
-    // удалили предпоследний элемент
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
 
-    // удалали первый элемент
+      boolean result = list.remove(18);
 
-    // список может быть пустой
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(18));
+    }
 
-    // значение может не существовать в списке
+    @Test
+    @DisplayName("Should remove pre last node by value")
+    void shouldRemovePreLastNodeByValue() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
+
+      boolean result = list.remove(6);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(6));
+    }
+
+    @Test
+    @DisplayName("Should remove first node by value")
+    void shouldRemoveFirstNodeByValue() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
+
+      boolean result = list.remove(1);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(1));
+    }
+
+    @Test
+    @DisplayName("Should not remove anything from empty list")
+    void shouldNotRemoveFromEmptyList() {
+      LinkedList list = new LinkedList();
+
+      boolean result = list.remove(5);
+
+      Assertions.assertFalse(result);
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(5));
+    }
+
+    @Test
+    @DisplayName("Should not remove not existing value")
+    void shouldNotRemoveNotExistingValue() {
+      LinkedList list = new LinkedList();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(10));
+
+      boolean result = list.remove(15);
+
+      Assertions.assertFalse(result);
+      Assertions.assertEquals(3, list.count());
+    }
   }
 }
