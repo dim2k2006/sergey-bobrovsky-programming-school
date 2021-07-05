@@ -282,4 +282,95 @@ public class LinkedListTest {
       Assertions.assertEquals(0, list.count());
     }
   }
+
+  @Nested
+  @DisplayName("insertAfter method")
+  class InsertAfterMethod {
+    @Test
+    @DisplayName("Should insert node in the middle of the list")
+    void shouldInsertNodeInTheMiddleOfTheList() {
+      LinkedList list = new LinkedList();
+
+      Node firstNode = new Node(1);
+      Node secondNode = new Node(2);
+      Node thirdNode = new Node(3);
+
+      list.addInTail(firstNode);
+      list.addInTail(secondNode);
+      list.addInTail(thirdNode);
+
+      list.insertAfter(secondNode, new Node(4));
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(list.find(4));
+    }
+
+    @Test
+    @DisplayName("Should insert node after first node")
+    void shouldInsertNodeAfterFirstNode() {
+      LinkedList list = new LinkedList();
+
+      Node firstNode = new Node(1);
+      Node secondNode = new Node(2);
+      Node thirdNode = new Node(3);
+
+      list.addInTail(firstNode);
+      list.addInTail(secondNode);
+      list.addInTail(thirdNode);
+
+      list.insertAfter(firstNode, new Node(4));
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(list.find(4));
+    }
+
+    @Test
+    @DisplayName("Should insert node before first node")
+    void shouldInsertNodeBeforeFirstNode() {
+      LinkedList list = new LinkedList();
+
+      Node firstNode = new Node(1);
+      Node secondNode = new Node(2);
+      Node thirdNode = new Node(3);
+
+      list.addInTail(firstNode);
+      list.addInTail(secondNode);
+      list.addInTail(thirdNode);
+
+      list.insertAfter(null, new Node(4));
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(list.find(4));
+    }
+
+    @Test
+    @DisplayName("Should insert node to the end")
+    void shouldInsertNodeToTheEnd() {
+      LinkedList list = new LinkedList();
+
+      Node firstNode = new Node(1);
+      Node secondNode = new Node(2);
+      Node thirdNode = new Node(3);
+
+      list.addInTail(firstNode);
+      list.addInTail(secondNode);
+      list.addInTail(thirdNode);
+
+      list.insertAfter(thirdNode, new Node(4));
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(list.find(4));
+    }
+
+    @Test
+    @DisplayName("Should insert node in empty list")
+    void shouldInsertNodeInEmptyList() {
+      LinkedList list = new LinkedList();
+
+      list.insertAfter(null, new Node(4));
+
+      Assertions.assertEquals(1, list.count());
+      Assertions.assertNotNull(list.find(4));
+    }
+  }
 }

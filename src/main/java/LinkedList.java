@@ -102,11 +102,35 @@ public class LinkedList {
     return getCount(head); // здесь будет ваш код подсчёта количества элементов в списке
   }
 
+  private void insertAfterNode(Node currentNode, Node nodeAfter, Node nodeToInsert) {
+    if (currentNode == null) {
+      return;
+    }
+
+    if (currentNode == nodeAfter) {
+      nodeToInsert.next = currentNode.next;
+      currentNode.next = nodeToInsert;
+
+      return;
+    }
+
+    insertAfterNode(currentNode.next, nodeAfter, nodeToInsert);
+  }
+
   public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
     // здесь будет ваш код вставки узла после заданного
 
     // если _nodeAfter = null ,
     // добавьте новый элемент первым в списке
+    if (_nodeAfter == null) {
+
+      _nodeToInsert.next = head;
+      head = _nodeToInsert;
+
+      return;
+    }
+
+    insertAfterNode(head, _nodeAfter, _nodeToInsert);
   }
 
 }
