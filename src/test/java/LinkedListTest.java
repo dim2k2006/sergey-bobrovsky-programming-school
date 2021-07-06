@@ -218,6 +218,8 @@ public class LinkedListTest {
 
       Assertions.assertEquals(0, list.count());
       Assertions.assertNull(list.find(1));
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
     }
 
     @Test
@@ -237,6 +239,8 @@ public class LinkedListTest {
 
       Assertions.assertEquals(3, list.count());
       Assertions.assertEquals(0, list.findAll(1).size());
+      Assertions.assertEquals(5, list.head.value);
+      Assertions.assertEquals(2, list.tail.value);
     }
 
     @Test
@@ -247,6 +251,8 @@ public class LinkedListTest {
       list.removeAll(1);
 
       Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
     }
 
     @Test
@@ -266,6 +272,8 @@ public class LinkedListTest {
 
       Assertions.assertEquals(7, list.count());
       Assertions.assertEquals(0, list.findAll(100).size());
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertEquals(1, list.tail.value);
     }
   }
 
@@ -284,6 +292,8 @@ public class LinkedListTest {
       list.clear();
 
       Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
     }
 
     @Test
@@ -294,6 +304,8 @@ public class LinkedListTest {
       list.clear();
 
       Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
     }
   }
 
