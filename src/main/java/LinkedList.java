@@ -52,17 +52,27 @@ public class LinkedList {
       return false;
     }
 
-    if (node.value == value) {
+    if (node == head && node == tail && node.value == value) {
+      head = null;
+      tail = null;
+
+      return true;
+    }
+
+    if (node == head && node.value == value) {
       head = node.next;
 
       return true;
     }
 
-    if (node.next == null) {
-      return false;
+    if (node.next != null && node.next == tail && node.next.value == value) {
+      tail = node;
+      node.next = null;
+
+      return true;
     }
 
-    if (node.next.value == value) {
+    if (node.next != null && node.next.value == value) {
       node.next = node.next.next;
 
       return true;
