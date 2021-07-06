@@ -118,6 +118,14 @@ public class LinkedList {
       return;
     }
 
+    if (currentNode == nodeAfter && currentNode == tail) {
+      nodeToInsert.next = currentNode.next;
+      currentNode.next = nodeToInsert;
+      tail = nodeToInsert;
+
+      return;
+    }
+
     if (currentNode == nodeAfter) {
       nodeToInsert.next = currentNode.next;
       currentNode.next = nodeToInsert;
@@ -133,6 +141,15 @@ public class LinkedList {
 
     // если _nodeAfter = null ,
     // добавьте новый элемент первым в списке
+    if (_nodeAfter == null && tail == null) {
+
+      _nodeToInsert.next = head;
+      head = _nodeToInsert;
+      tail = _nodeToInsert;
+
+      return;
+    }
+
     if (_nodeAfter == null) {
 
       _nodeToInsert.next = head;
