@@ -1,3 +1,5 @@
+package linkedList;
+
 public class LinkedListExtraTask {
   private static LinkedList zipLists(Node nodeA, Node nodeB, LinkedList accumulator) {
     if (nodeA == null || nodeB == null) {

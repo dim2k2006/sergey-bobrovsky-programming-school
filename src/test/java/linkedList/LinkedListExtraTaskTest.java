@@ -1,3 +1,5 @@
+package linkedList;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,13 +11,13 @@ public class LinkedListExtraTaskTest {
     LinkedList listA = new LinkedList();
     LinkedList listB = new LinkedList();
 
-    listA.addInTail(new Node(1));
-    listA.addInTail(new Node(2));
-    listA.addInTail(new Node(3));
+    listA.addInTail(new linkedList.Node(1));
+    listA.addInTail(new linkedList.Node(2));
+    listA.addInTail(new linkedList.Node(3));
 
-    listB.addInTail(new Node(4));
-    listB.addInTail(new Node(5));
-    listB.addInTail(new Node(6));
+    listB.addInTail(new linkedList.Node(4));
+    listB.addInTail(new linkedList.Node(5));
+    listB.addInTail(new linkedList.Node(6));
 
     LinkedList result = LinkedListExtraTask.zip(listA, listB);
 
@@ -42,12 +44,12 @@ public class LinkedListExtraTaskTest {
     LinkedList listA = new LinkedList();
     LinkedList listB = new LinkedList();
 
-    listA.addInTail(new Node(1));
-    listA.addInTail(new Node(2));
+    listA.addInTail(new linkedList.Node(1));
+    listA.addInTail(new linkedList.Node(2));
 
-    listB.addInTail(new Node(4));
-    listB.addInTail(new Node(5));
-    listB.addInTail(new Node(6));
+    listB.addInTail(new linkedList.Node(4));
+    listB.addInTail(new linkedList.Node(5));
+    listB.addInTail(new linkedList.Node(6));
 
     LinkedList result = LinkedListExtraTask.zip(listA, listB);
 
