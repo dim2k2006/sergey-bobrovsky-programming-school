@@ -108,6 +108,8 @@ public class LinkedList2 {
 
   public void clear() {
     // здесь будет ваш код очистки всего списка
+    head = null;
+    tail = null;
   }
 
   private int getCount(Node node) {
