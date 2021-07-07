@@ -239,4 +239,85 @@ public class LinkedList2Test {
       Assertions.assertNull(list.tail);
     }
   }
+
+  @Nested
+  @DisplayName("removeAll method")
+  class RemoveAllMethod {
+    @Test
+    @DisplayName("Should remove one node")
+    void shouldRemoveOneNode() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(1));
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
+    }
+
+    @Test
+    @DisplayName("Should remove several nodes")
+    void shouldRemoveSeveralNodes() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(10));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertEquals(0, list.findAll(1).size());
+      Assertions.assertEquals(5, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(10, list.head.next.value);
+      Assertions.assertEquals(2, list.tail.value);
+      Assertions.assertEquals(10, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should return empty list")
+    void shouldReturnEmptyList() {
+      LinkedList2 list = new LinkedList2();
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
+    }
+
+    @Test
+    @DisplayName("Should not remove not existing values")
+    void shouldNotRemoveNotExistingValues() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(10));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(1));
+
+      list.removeAll(100);
+
+      Assertions.assertEquals(7, list.count());
+      Assertions.assertEquals(0, list.findAll(100).size());
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(1, list.head.next.value);
+      Assertions.assertEquals(1, list.tail.value);
+      Assertions.assertEquals(1, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+  }
 }

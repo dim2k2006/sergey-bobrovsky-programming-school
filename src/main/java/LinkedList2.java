@@ -99,6 +99,11 @@ public class LinkedList2 {
 
   public void removeAll(int _value) {
     // здесь будет ваш код удаления всех узлов по заданному значению
+    ArrayList<Node> nodes = findAll(_value);
+
+    for (int i = 0; i < nodes.size(); i += 1) {
+      remove(_value);
+    }
   }
 
   public void clear() {
