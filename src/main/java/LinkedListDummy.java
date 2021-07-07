@@ -9,33 +9,6 @@ public class LinkedListDummy {
     tail = null;
   }
 
-  private void addDummyNodes() {
-    DummyNode dummyHead = new DummyNode();
-    DummyNode dummyTail = new DummyNode();
-
-    if (head == null && tail == null) {
-      head = dummyHead;
-      tail = dummyTail;
-
-      head.next = tail;
-      tail.prev = head;
-    }
-
-    dummyHead.next = head;
-    dummyHead.next.prev = dummyHead;
-    head = dummyHead;
-
-    tail.next = dummyTail;
-    dummyTail.prev = tail;
-    tail = dummyTail;
-  }
-
-  private void removeDummyNodes() {
-    if (head == null && tail == null) {
-
-    }
-  }
-
   public void addInTail(BaseNode _item) {
     if (head == null) {
       this.head = _item;
@@ -85,9 +58,9 @@ public class LinkedListDummy {
 }
 
 class BaseNode {
-  public int value;
-  public BaseNode next;
-  public BaseNode prev;
+  private int value;
+  private BaseNode next;
+  private BaseNode prev;
 
   public BaseNode(int _value) {
     value = _value;
@@ -97,6 +70,34 @@ class BaseNode {
 
   public boolean isDummy() {
     return false;
+  }
+
+  public int getValue() {
+    return value;
+  }
+
+  public BaseNode getPrev() {
+    if (prev == null) {
+      return null;
+    }
+
+    if (prev.isDummy()) {
+      return null;
+    }
+
+    return prev;
+  }
+
+  public BaseNode getNext() {
+    if (next == null) {
+      return null;
+    }
+
+    if (next.isDummy()) {
+      return null;
+    }
+
+    return next;
   }
 }
 
