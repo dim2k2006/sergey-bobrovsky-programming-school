@@ -10,15 +10,9 @@ public class LinkedListDummy {
   }
 
   public void addInTail(BaseNode _item) {
-    if (head == null) {
-      this.head = _item;
-      this.head.next = null;
-      this.head.prev = null;
-    } else {
-      this.tail.next = _item;
-      _item.prev = tail;
-    }
-    this.tail = _item;
+    tail.setNext(_item);
+    _item.setPrev(tail);
+    tail = _item;
   }
 
   public BaseNode find(int _value) {
@@ -98,6 +92,14 @@ class BaseNode {
     }
 
     return next;
+  }
+
+  public void setPrev(BaseNode _prev) {
+    prev = _prev;
+  }
+
+  public void setNext(BaseNode _next) {
+    next = _next;
   }
 }
 
