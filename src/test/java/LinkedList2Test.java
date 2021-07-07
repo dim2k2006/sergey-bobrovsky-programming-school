@@ -52,4 +52,46 @@ public class LinkedList2Test {
       Assertions.assertNull(result);
     }
   }
+
+  @Nested
+  @DisplayName("findAll method")
+  class FindAllMethod {
+    @Test
+    @DisplayName("Should find one node")
+    void shouldFindOneNode() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+
+      ArrayList<Node> result = list.findAll(1);
+
+      Assertions.assertEquals(1, result.size());
+    }
+
+    @Test
+    @DisplayName("Should find several nodes")
+    void shouldFindSeveralNodes() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(19));
+      list.addInTail(new Node(1));
+
+      ArrayList<Node> result = list.findAll(1);
+
+      Assertions.assertEquals(3, result.size());
+    }
+
+    @Test
+    @DisplayName("Should not find nodes in empty list")
+    void shouldNotFindNodesInEmptyList() {
+      LinkedList2 list = new LinkedList2();
+
+      ArrayList<Node> result = list.findAll(1);
+
+      Assertions.assertEquals(0, result.size());
+    }
+  }
 }

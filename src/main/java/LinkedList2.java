@@ -38,10 +38,22 @@ public class LinkedList2 {
     return findByValue(_value, head);
   }
 
+  private ArrayList<Node> findAllByValue(int value, Node node, ArrayList<Node> accumulator) {
+    if (node == null) {
+      return accumulator;
+    }
+
+    if (node.value == value) {
+      accumulator.add(node);
+    }
+
+    return findAllByValue(value, node.next, accumulator);
+  }
+
   public ArrayList<Node> findAll(int _value) {
     ArrayList<Node> nodes = new ArrayList<Node>();
     // здесь будет ваш код поиска всех узлов по заданному значению
-    return nodes;
+    return findAllByValue(_value, head, nodes);
   }
 
   public boolean remove(int _value) {
