@@ -165,6 +165,7 @@ public class LinkedList2 {
 
     if (_nodeAfter == null) {
       _nodeToInsert.next = head;
+      _nodeToInsert.next.prev = _nodeToInsert;
       head = _nodeToInsert;
 
       return;

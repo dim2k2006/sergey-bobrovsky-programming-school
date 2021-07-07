@@ -394,6 +394,7 @@ public class LinkedList2Test {
       Assertions.assertNotNull(insertedNode);
       Assertions.assertNull(insertedNode.prev);
       Assertions.assertEquals(1, insertedNode.next.value);
+      Assertions.assertEquals(4, firstNode.prev.value);
       Assertions.assertEquals(4, list.head.value);
       Assertions.assertEquals(3, list.tail.value);
     }
