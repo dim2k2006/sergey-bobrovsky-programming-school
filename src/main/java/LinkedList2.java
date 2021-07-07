@@ -122,11 +122,53 @@ public class LinkedList2 {
     return getCount(head); // здесь будет ваш код подсчёта количества элементов в списке
   }
 
+  private void insertAfterNode(Node currentNode, Node nodeAfter, Node nodeToInsert) {
+    if (currentNode == null) {
+      return;
+    }
+
+    if (currentNode == nodeAfter && currentNode == tail) {
+      nodeToInsert.prev = currentNode;
+      nodeToInsert.next = currentNode.next;
+      currentNode.next = nodeToInsert;
+      tail = nodeToInsert;
+
+      return;
+    }
+
+    if (currentNode == nodeAfter) {
+      nodeToInsert.prev = currentNode;
+      nodeToInsert.next = currentNode.next;
+      currentNode.next.prev = nodeToInsert;
+      currentNode.next = nodeToInsert;
+
+      return;
+    }
+
+    insertAfterNode(currentNode.next, nodeAfter, nodeToInsert);
+  }
+
   public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
     // здесь будет ваш код вставки узла после заданного узла
 
     // если _nodeAfter = null
     // добавьте новый элемент первым в списке
+    if (_nodeAfter == null && tail == null) {
+      _nodeToInsert.next = head;
+      head = _nodeToInsert;
+      tail = _nodeToInsert;
+
+      return;
+    }
+
+    if (_nodeAfter == null) {
+      _nodeToInsert.next = head;
+      head = _nodeToInsert;
+
+      return;
+    }
+
+    insertAfterNode(head, _nodeAfter, _nodeToInsert);
   }
 }
 
