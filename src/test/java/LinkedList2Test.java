@@ -94,4 +94,149 @@ public class LinkedList2Test {
       Assertions.assertEquals(0, result.size());
     }
   }
+
+  @Nested
+  @DisplayName("remove method")
+  class RemoveMethod {
+    @Test
+    @DisplayName("Should remove node by value")
+    void shouldRemoveNodeByValue() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(42));
+
+      boolean result = list.remove(18);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNull(list.find(18));
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(6, list.head.next.value);
+      Assertions.assertEquals(42, list.tail.value);
+      Assertions.assertEquals(2, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should remove last node by value")
+    void shouldRemoveLastNodeByValue() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
+
+      boolean result = list.remove(18);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(18));
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(6, list.head.next.value);
+      Assertions.assertEquals(6, list.tail.value);
+      Assertions.assertEquals(1, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should remove pre last node by value")
+    void shouldRemovePreLastNodeByValue() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
+
+      boolean result = list.remove(6);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(6));
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(18, list.head.next.value);
+      Assertions.assertEquals(18, list.tail.value);
+      Assertions.assertEquals(1, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should remove first node by value")
+    void shouldRemoveFirstNodeByValue() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(6));
+      list.addInTail(new Node(18));
+
+      boolean result = list.remove(1);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(1));
+      Assertions.assertEquals(6, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(18, list.head.next.value);
+      Assertions.assertEquals(18, list.tail.value);
+      Assertions.assertEquals(6, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should not remove anything from empty list")
+    void shouldNotRemoveFromEmptyList() {
+      LinkedList2 list = new LinkedList2();
+
+      boolean result = list.remove(5);
+
+      Assertions.assertFalse(result);
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(5));
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
+    }
+
+    @Test
+    @DisplayName("Should not remove not existing value")
+    void shouldNotRemoveNotExistingValue() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(5));
+      list.addInTail(new Node(10));
+
+      boolean result = list.remove(15);
+
+      Assertions.assertFalse(result);
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(5, list.head.next.value);
+      Assertions.assertEquals(10, list.tail.value);
+      Assertions.assertEquals(5, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should return empty list")
+    void shouldReturnEmptyList() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+
+      boolean result = list.remove(1);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(1));
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
+    }
+  }
 }

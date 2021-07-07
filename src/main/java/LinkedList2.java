@@ -56,9 +56,45 @@ public class LinkedList2 {
     return findAllByValue(_value, head, nodes);
   }
 
+  private boolean removeNodeByValue(int value, Node node) {
+    if (node == null) {
+      return false;
+    }
+
+    if (node == head && node == tail && node.value == value) {
+      head = null;
+      tail = null;
+
+      return true;
+    }
+
+    if (node == head && node.value == value) {
+      node.next.prev = null;
+      head = node.next;
+
+      return true;
+    }
+
+    if (node == tail && node.value == value) {
+      tail = node.prev;
+      node.prev.next = null;
+
+      return true;
+    }
+
+    if (node.value == value) {
+      node.prev.next = node.next;
+      node.next.prev = node.prev;
+
+      return true;
+    }
+
+    return removeNodeByValue(value, node.next);
+  }
+
   public boolean remove(int _value) {
     // здесь будет ваш код удаления одного узла по заданному значению
-    return true; // если узел был удалён
+    return removeNodeByValue(_value, head);
   }
 
   public void removeAll(int _value) {
@@ -69,8 +105,16 @@ public class LinkedList2 {
     // здесь будет ваш код очистки всего списка
   }
 
+  private int getCount(Node node) {
+    if (node == null) {
+      return 0;
+    }
+
+    return 1 + getCount(node.next);
+  }
+
   public int count() {
-    return 0; // здесь будет ваш код подсчёта количества элементов в списке
+    return getCount(head); // здесь будет ваш код подсчёта количества элементов в списке
   }
 
   public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
