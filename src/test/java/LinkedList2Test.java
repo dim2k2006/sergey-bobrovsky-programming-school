@@ -27,5 +27,29 @@ public class LinkedList2Test {
       Assertions.assertNull(result.prev);
       Assertions.assertEquals(2, result.next.value);
     }
+
+    @Test
+    @DisplayName("Should not find node")
+    void shouldNotFindNode() {
+      LinkedList2 list = new LinkedList2();
+
+      list.addInTail(new Node(1));
+      list.addInTail(new Node(2));
+      list.addInTail(new Node(3));
+
+      Node result = list.find(15);
+
+      Assertions.assertNull(result);
+    }
+
+    @Test
+    @DisplayName("Should not find node in empty list")
+    void shouldNotFindNodeInEmptyList() {
+      LinkedList2 list = new LinkedList2();
+
+      Node result = list.find(15);
+
+      Assertions.assertNull(result);
+    }
   }
 }
