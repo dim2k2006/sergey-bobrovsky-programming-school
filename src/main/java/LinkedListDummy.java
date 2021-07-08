@@ -5,19 +5,51 @@ public class LinkedListDummy {
   public BaseNode tail;
 
   public LinkedListDummy() {
-    head = null;
-    tail = null;
+    head = new DummyNode();
+    tail = new DummyNode();
+
+    head.setNext(tail);
+    tail.setPrev(head);
+  }
+
+  public BaseNode getHead() {
+    return head.getNext();
+  }
+
+  public void setHead(BaseNode node) {
+    node.setNext(head.getNext());
+    node.setPrev(head);
+    head.setNext(node);
+  }
+
+  public BaseNode getTail() {
+    return tail.getPrev();
+  }
+
+  public void setTail(BaseNode node) {
+    node.setNext(tail);
+    node.setPrev(tail.getPrev());
+    tail.setPrev(node);
   }
 
   public void addInTail(BaseNode _item) {
-    tail.setNext(_item);
-    _item.setPrev(tail);
-    tail = _item;
+    insertAfter(tail.getPrev(), _item);
+  }
+
+  private BaseNode findByValue(int value, BaseNode node) {
+    if (node == null) {
+      return null;
+    }
+
+    if (node.getValue() == value) {
+      return node;
+    }
+
+    return findByValue(value, node.getNext());
   }
 
   public BaseNode find(int _value) {
-    // здесь будет ваш код поиска
-    return null;
+    return findByValue(_value, getHead());
   }
 
   public ArrayList<BaseNode> findAll(int _value) {
@@ -39,15 +71,41 @@ public class LinkedListDummy {
     // здесь будет ваш код очистки всего списка
   }
 
+  private int getCount(BaseNode node) {
+    if (node == null) {
+      return 0;
+    }
+
+    if (node.isDummy()) {
+      return 0;
+    }
+
+    return 1 + getCount(node.getNext());
+  }
+
   public int count() {
-    return 0; // здесь будет ваш код подсчёта количества элементов в списке
+    return getCount(getHead());
+  }
+
+  private void insertAfterNode(BaseNode currentNode, BaseNode nodeAfter, BaseNode nodeToInsert) {
+    if (currentNode == null) {
+      return;
+    }
+
+    if (currentNode == nodeAfter) {
+      nodeToInsert.setPrev(currentNode);
+      nodeToInsert.setNext(currentNode.getNext());
+      currentNode.getNext().setPrev(nodeToInsert);
+      currentNode.setNext(nodeToInsert);
+
+      return;
+    }
+
+    insertAfterNode(currentNode.getNext(), nodeAfter, nodeToInsert);
   }
 
   public void insertAfter(BaseNode _nodeAfter, BaseNode _nodeToInsert) {
-    // здесь будет ваш код вставки узла после заданного узла
-
-    // если _nodeAfter = null
-    // добавьте новый элемент первым в списке
+    insertAfterNode(head, _nodeAfter, _nodeToInsert);
   }
 }
 
@@ -71,26 +129,10 @@ class BaseNode {
   }
 
   public BaseNode getPrev() {
-    if (prev == null) {
-      return null;
-    }
-
-    if (prev.isDummy()) {
-      return null;
-    }
-
     return prev;
   }
 
   public BaseNode getNext() {
-    if (next == null) {
-      return null;
-    }
-
-    if (next.isDummy()) {
-      return null;
-    }
-
     return next;
   }
 
