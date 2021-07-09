@@ -53,75 +53,75 @@ public class LinkedListDummyTest {
       Assertions.assertNull(result);
     }
   }
-//
-//  @Nested
-//  @DisplayName("findAll method")
-//  class FindAllMethod {
-//    @Test
-//    @DisplayName("Should find one BaseNode")
-//    void shouldFindOneBaseNode() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//
-//      ArrayList<BaseNode> result = list.findAll(1);
-//
-//      Assertions.assertEquals(1, result.size());
-//    }
-//
-//    @Test
-//    @DisplayName("Should find several BaseNodes")
-//    void shouldFindSeveralBaseNodes() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(5));
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(19));
-//      list.addInTail(new BaseNode(1));
-//
-//      ArrayList<BaseNode> result = list.findAll(1);
-//
-//      Assertions.assertEquals(3, result.size());
-//    }
-//
-//    @Test
-//    @DisplayName("Should not find BaseNodes in empty list")
-//    void shouldNotFindBaseNodesInEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      ArrayList<BaseNode> result = list.findAll(1);
-//
-//      Assertions.assertEquals(0, result.size());
-//    }
-//  }
 
-//  @Nested
-//  @DisplayName("remove method")
-//  class RemoveMethod {
-//    @Test
-//    @DisplayName("Should remove BaseNode by value")
-//    void shouldRemoveBaseNodeByValue() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(6));
-//      list.addInTail(new BaseNode(18));
-//      list.addInTail(new BaseNode(2));
-//      list.addInTail(new BaseNode(42));
-//
-//      boolean result = list.remove(18);
-//
-//      Assertions.assertTrue(result);
-//      Assertions.assertEquals(4, list.count());
-//      Assertions.assertNull(list.find(18));
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(6, list.head.next.value);
-//      Assertions.assertEquals(42, list.tail.value);
-//      Assertions.assertEquals(2, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
+  @Nested
+  @DisplayName("findAll method")
+  class FindAllMethod {
+    @Test
+    @DisplayName("Should find one BaseNode")
+    void shouldFindOneBaseNode() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+
+      ArrayList<BaseNode> result = list.findAll(1);
+
+      Assertions.assertEquals(1, result.size());
+    }
+
+    @Test
+    @DisplayName("Should find several BaseNodes")
+    void shouldFindSeveralBaseNodes() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(5));
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(19));
+      list.addInTail(new BaseNode(1));
+
+      ArrayList<BaseNode> result = list.findAll(1);
+
+      Assertions.assertEquals(3, result.size());
+    }
+
+    @Test
+    @DisplayName("Should not find BaseNodes in empty list")
+    void shouldNotFindBaseNodesInEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      ArrayList<BaseNode> result = list.findAll(1);
+
+      Assertions.assertEquals(0, result.size());
+    }
+  }
+
+  @Nested
+  @DisplayName("remove method")
+  class RemoveMethod {
+    @Test
+    @DisplayName("Should remove BaseNode by value")
+    void shouldRemoveBaseNodeByValue() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(6));
+      list.addInTail(new BaseNode(18));
+      list.addInTail(new BaseNode(2));
+      list.addInTail(new BaseNode(42));
+
+      boolean result = list.remove(18);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNull(list.find(18));
+//      Assertions.assertEquals(1, list.head.getValue());
+//      Assertions.assertNull(list.head.getPrev());
+//      Assertions.assertEquals(6, list.head.getNext().getValue());
+//      Assertions.assertEquals(42, list.tail.getValue());
+//      Assertions.assertEquals(2, list.tail.getPrev().getValue());
+//      Assertions.assertNull(list.tail.getNext());
+    }
 //
 //    @Test
 //    @DisplayName("Should remove last BaseNode by value")
@@ -239,8 +239,8 @@ public class LinkedListDummyTest {
 //      Assertions.assertNull(list.head);
 //      Assertions.assertNull(list.tail);
 //    }
-//  }
-//
+  }
+
 //  @Nested
 //  @DisplayName("removeAll method")
 //  class RemoveAllMethod {

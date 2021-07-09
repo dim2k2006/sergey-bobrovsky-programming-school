@@ -52,10 +52,22 @@ public class LinkedListDummy {
     return findByValue(_value, getHead());
   }
 
+  private ArrayList<BaseNode> findAllByValue(int value, BaseNode node, ArrayList<BaseNode> accumulator) {
+    if (node == null) {
+      return accumulator;
+    }
+
+    if (node.getValue() == value) {
+      accumulator.add(node);
+    }
+
+    return findAllByValue(value, node.getNext(), accumulator);
+  }
+
   public ArrayList<BaseNode> findAll(int _value) {
     ArrayList<BaseNode> nodes = new ArrayList<BaseNode>();
     // здесь будет ваш код поиска всех узлов по заданному значению
-    return nodes;
+    return findAllByValue(_value, head, nodes);
   }
 
   public boolean remove(int _value) {
