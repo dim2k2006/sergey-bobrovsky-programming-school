@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class LinkedListDummy {
-  public BaseNode head;
-  public BaseNode tail;
+  private BaseNode head;
+  private BaseNode tail;
 
   public LinkedListDummy() {
     head = new DummyNode();
@@ -13,7 +13,13 @@ public class LinkedListDummy {
   }
 
   public BaseNode getHead() {
-    return head.getNext();
+    BaseNode node = head.getNext();
+
+    if (node instanceof DummyNode) {
+      return null;
+    }
+
+    return node;
   }
 
   public void setHead(BaseNode node) {
@@ -23,7 +29,13 @@ public class LinkedListDummy {
   }
 
   public BaseNode getTail() {
-    return tail.getPrev();
+    BaseNode node = tail.getPrev();
+
+    if (node instanceof DummyNode) {
+      return null;
+    }
+
+    return node;
   }
 
   public void setTail(BaseNode node) {
@@ -70,9 +82,24 @@ public class LinkedListDummy {
     return findAllByValue(_value, head, nodes);
   }
 
+  private boolean removeNodeByValue(int value, BaseNode node) {
+    if (node == null) {
+      return false;
+    }
+
+    if (node.getValue() == value) {
+      node.getPrev().setNext(node.getNext());
+      node.getNext().setPrev(node.getPrev());
+
+      return true;
+    }
+
+    return removeNodeByValue(value, node.getNext());
+  }
+
   public boolean remove(int _value) {
     // здесь будет ваш код удаления одного узла по заданному значению
-    return true; // если узел был удалён
+    return removeNodeByValue(_value, head);
   }
 
   public void removeAll(int _value) {

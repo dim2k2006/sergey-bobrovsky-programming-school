@@ -115,130 +115,130 @@ public class LinkedListDummyTest {
       Assertions.assertTrue(result);
       Assertions.assertEquals(4, list.count());
       Assertions.assertNull(list.find(18));
-//      Assertions.assertEquals(1, list.head.getValue());
-//      Assertions.assertNull(list.head.getPrev());
-//      Assertions.assertEquals(6, list.head.getNext().getValue());
-//      Assertions.assertEquals(42, list.tail.getValue());
-//      Assertions.assertEquals(2, list.tail.getPrev().getValue());
-//      Assertions.assertNull(list.tail.getNext());
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertEquals(6, list.getHead().getNext().getValue());
+      Assertions.assertEquals(42, list.getTail().getValue());
+      Assertions.assertEquals(2, list.getTail().getPrev().getValue());
+      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
     }
-//
-//    @Test
-//    @DisplayName("Should remove last BaseNode by value")
-//    void shouldRemoveLastBaseNodeByValue() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(6));
-//      list.addInTail(new BaseNode(18));
-//
-//      boolean result = list.remove(18);
-//
-//      Assertions.assertTrue(result);
-//      Assertions.assertEquals(2, list.count());
-//      Assertions.assertNull(list.find(18));
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(6, list.head.next.value);
-//      Assertions.assertEquals(6, list.tail.value);
-//      Assertions.assertEquals(1, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
-//
-//    @Test
-//    @DisplayName("Should remove pre last BaseNode by value")
-//    void shouldRemovePreLastBaseNodeByValue() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(6));
-//      list.addInTail(new BaseNode(18));
-//
-//      boolean result = list.remove(6);
-//
-//      Assertions.assertTrue(result);
-//      Assertions.assertEquals(2, list.count());
-//      Assertions.assertNull(list.find(6));
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(18, list.head.next.value);
-//      Assertions.assertEquals(18, list.tail.value);
-//      Assertions.assertEquals(1, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
-//
-//    @Test
-//    @DisplayName("Should remove first BaseNode by value")
-//    void shouldRemoveFirstBaseNodeByValue() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(6));
-//      list.addInTail(new BaseNode(18));
-//
-//      boolean result = list.remove(1);
-//
-//      Assertions.assertTrue(result);
-//      Assertions.assertEquals(2, list.count());
-//      Assertions.assertNull(list.find(1));
-//      Assertions.assertEquals(6, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(18, list.head.next.value);
-//      Assertions.assertEquals(18, list.tail.value);
-//      Assertions.assertEquals(6, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
-//
-//    @Test
-//    @DisplayName("Should not remove anything from empty list")
-//    void shouldNotRemoveFromEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      boolean result = list.remove(5);
-//
-//      Assertions.assertFalse(result);
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.find(5));
-//      Assertions.assertNull(list.head);
-//      Assertions.assertNull(list.tail);
-//    }
-//
-//    @Test
-//    @DisplayName("Should not remove not existing value")
-//    void shouldNotRemoveNotExistingValue() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(5));
-//      list.addInTail(new BaseNode(10));
-//
-//      boolean result = list.remove(15);
-//
-//      Assertions.assertFalse(result);
-//      Assertions.assertEquals(3, list.count());
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(5, list.head.next.value);
-//      Assertions.assertEquals(10, list.tail.value);
-//      Assertions.assertEquals(5, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
-//
-//    @Test
-//    @DisplayName("Should return empty list")
-//    void shouldReturnEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//
-//      boolean result = list.remove(1);
-//
-//      Assertions.assertTrue(result);
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.find(1));
-//      Assertions.assertNull(list.head);
-//      Assertions.assertNull(list.tail);
-//    }
+
+    @Test
+    @DisplayName("Should remove last BaseNode by value")
+    void shouldRemoveLastBaseNodeByValue() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(6));
+      list.addInTail(new BaseNode(18));
+
+      boolean result = list.remove(18);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(18));
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertEquals(6, list.getHead().getNext().getValue());
+      Assertions.assertEquals(6, list.getTail().getValue());
+      Assertions.assertEquals(1, list.getTail().getPrev().getValue());
+      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+    }
+
+    @Test
+    @DisplayName("Should remove pre last BaseNode by value")
+    void shouldRemovePreLastBaseNodeByValue() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(6));
+      list.addInTail(new BaseNode(18));
+
+      boolean result = list.remove(6);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(6));
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertEquals(18, list.getHead().getNext().getValue());
+      Assertions.assertEquals(18, list.getTail().getValue());
+      Assertions.assertEquals(1, list.getTail().getPrev().getValue());
+      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+    }
+
+    @Test
+    @DisplayName("Should remove first BaseNode by value")
+    void shouldRemoveFirstBaseNodeByValue() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(6));
+      list.addInTail(new BaseNode(18));
+
+      boolean result = list.remove(1);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.find(1));
+      Assertions.assertEquals(6, list.getHead().getValue());
+      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertEquals(18, list.getHead().getNext().getValue());
+      Assertions.assertEquals(18, list.getTail().getValue());
+      Assertions.assertEquals(6, list.getTail().getPrev().getValue());
+      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+    }
+
+    @Test
+    @DisplayName("Should not remove anything from empty list")
+    void shouldNotRemoveFromEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      boolean result = list.remove(5);
+
+      Assertions.assertFalse(result);
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(5));
+      Assertions.assertNull(list.getHead());
+      Assertions.assertNull(list.getTail());
+    }
+
+    @Test
+    @DisplayName("Should not remove not existing value")
+    void shouldNotRemoveNotExistingValue() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(5));
+      list.addInTail(new BaseNode(10));
+
+      boolean result = list.remove(15);
+
+      Assertions.assertFalse(result);
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertEquals(5, list.getHead().getNext().getValue());
+      Assertions.assertEquals(10, list.getTail().getValue());
+      Assertions.assertEquals(5, list.getTail().getPrev().getValue());
+      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+    }
+
+    @Test
+    @DisplayName("Should return empty list")
+    void shouldReturnEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+
+      boolean result = list.remove(1);
+
+      Assertions.assertTrue(result);
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(1));
+      Assertions.assertNull(list.getHead());
+      Assertions.assertNull(list.getTail());
+    }
   }
 
 //  @Nested
