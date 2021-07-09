@@ -322,128 +322,128 @@ public class LinkedListDummyTest {
     }
   }
 
-//  @Nested
-//  @DisplayName("insertAfter method")
-//  class InsertAfterMethod {
-//    @Test
-//    @DisplayName("Should insert BaseNode in the middle of the list")
-//    void shouldInsertBaseNodeInTheMiddleOfTheList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      BaseNode firstBaseNode = new BaseNode(1);
-//      BaseNode secondBaseNode = new BaseNode(2);
-//      BaseNode thirdBaseNode = new BaseNode(3);
-//
-//      list.addInTail(firstBaseNode);
-//      list.addInTail(secondBaseNode);
-//      list.addInTail(thirdBaseNode);
-//
-//      list.insertAfter(secondBaseNode, new BaseNode(4));
-//
-//      BaseNode insertedBaseNode = list.find(4);
-//
-//      Assertions.assertEquals(4, list.count());
-//      Assertions.assertNotNull(insertedBaseNode);
-//      Assertions.assertEquals(2, insertedBaseNode.prev.value);
-//      Assertions.assertEquals(3, insertedBaseNode.next.value);
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertEquals(3, list.tail.value);
-//    }
-//
-//    @Test
-//    @DisplayName("Should insert BaseNode after first BaseNode")
-//    void shouldInsertBaseNodeAfterFirstBaseNode() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      BaseNode firstBaseNode = new BaseNode(1);
-//      BaseNode secondBaseNode = new BaseNode(2);
-//      BaseNode thirdBaseNode = new BaseNode(3);
-//
-//      list.addInTail(firstBaseNode);
-//      list.addInTail(secondBaseNode);
-//      list.addInTail(thirdBaseNode);
-//
-//      list.insertAfter(firstBaseNode, new BaseNode(4));
-//
-//      BaseNode insertedBaseNode = list.find(4);
-//
-//      Assertions.assertEquals(4, list.count());
-//      Assertions.assertNotNull(insertedBaseNode);
-//      Assertions.assertEquals(1, insertedBaseNode.prev.value);
-//      Assertions.assertEquals(2, insertedBaseNode.next.value);
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertEquals(3, list.tail.value);
-//    }
-//
-//    @Test
-//    @DisplayName("Should insert BaseNode before first BaseNode")
-//    void shouldInsertBaseNodeBeforeFirstBaseNode() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      BaseNode firstBaseNode = new BaseNode(1);
-//      BaseNode secondBaseNode = new BaseNode(2);
-//      BaseNode thirdBaseNode = new BaseNode(3);
-//
-//      list.addInTail(firstBaseNode);
-//      list.addInTail(secondBaseNode);
-//      list.addInTail(thirdBaseNode);
-//
-//      list.insertAfter(null, new BaseNode(4));
-//
-//      BaseNode insertedBaseNode = list.find(4);
-//
-//      Assertions.assertEquals(4, list.count());
-//      Assertions.assertNotNull(insertedBaseNode);
-//      Assertions.assertNull(insertedBaseNode.prev);
-//      Assertions.assertEquals(1, insertedBaseNode.next.value);
-//      Assertions.assertEquals(4, firstBaseNode.prev.value);
-//      Assertions.assertEquals(4, list.head.value);
-//      Assertions.assertEquals(3, list.tail.value);
-//    }
-//
-//    @Test
-//    @DisplayName("Should insert BaseNode to the end")
-//    void shouldInsertBaseNodeToTheEnd() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      BaseNode firstBaseNode = new BaseNode(1);
-//      BaseNode secondBaseNode = new BaseNode(2);
-//      BaseNode thirdBaseNode = new BaseNode(3);
-//
-//      list.addInTail(firstBaseNode);
-//      list.addInTail(secondBaseNode);
-//      list.addInTail(thirdBaseNode);
-//
-//      list.insertAfter(thirdBaseNode, new BaseNode(4));
-//
-//      BaseNode insertedBaseNode = list.find(4);
-//
-//      Assertions.assertEquals(4, list.count());
-//      Assertions.assertNotNull(insertedBaseNode);
-//      Assertions.assertEquals(3, insertedBaseNode.prev.value);
-//      Assertions.assertNull(insertedBaseNode.next);
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertEquals(4, list.tail.value);
-//    }
-//
-//    @Test
-//    @DisplayName("Should insert BaseNode in empty list")
-//    void shouldInsertBaseNodeInEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.insertAfter(null, new BaseNode(4));
-//
-//      BaseNode insertedBaseNode = list.find(4);
-//
-//      Assertions.assertEquals(1, list.count());
-//      Assertions.assertNotNull(insertedBaseNode);
-//      Assertions.assertNull(insertedBaseNode.prev);
-//      Assertions.assertNull(insertedBaseNode.next);
-//      Assertions.assertEquals(4, list.head.value);
-//      Assertions.assertEquals(4, list.tail.value);
-//    }
-//  }
-//
+  @Nested
+  @DisplayName("insertAfter method")
+  class InsertAfterMethod {
+    @Test
+    @DisplayName("Should insert BaseNode in the middle of the list")
+    void shouldInsertBaseNodeInTheMiddleOfTheList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      BaseNode firstBaseNode = new BaseNode(1);
+      BaseNode secondBaseNode = new BaseNode(2);
+      BaseNode thirdBaseNode = new BaseNode(3);
+
+      list.addInTail(firstBaseNode);
+      list.addInTail(secondBaseNode);
+      list.addInTail(thirdBaseNode);
+
+      list.insertAfter(secondBaseNode, new BaseNode(4));
+
+      BaseNode insertedBaseNode = list.find(4);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(insertedBaseNode);
+      Assertions.assertEquals(2, insertedBaseNode.getPrev().getValue());
+      Assertions.assertEquals(3, insertedBaseNode.getNext().getValue());
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertEquals(3, list.getTail().getValue());
+    }
+
+    @Test
+    @DisplayName("Should insert BaseNode after first BaseNode")
+    void shouldInsertBaseNodeAfterFirstBaseNode() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      BaseNode firstBaseNode = new BaseNode(1);
+      BaseNode secondBaseNode = new BaseNode(2);
+      BaseNode thirdBaseNode = new BaseNode(3);
+
+      list.addInTail(firstBaseNode);
+      list.addInTail(secondBaseNode);
+      list.addInTail(thirdBaseNode);
+
+      list.insertAfter(firstBaseNode, new BaseNode(4));
+
+      BaseNode insertedBaseNode = list.find(4);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(insertedBaseNode);
+      Assertions.assertEquals(1, insertedBaseNode.getPrev().getValue());
+      Assertions.assertEquals(2, insertedBaseNode.getNext().getValue());
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertEquals(3, list.getTail().getValue());
+    }
+
+    @Test
+    @DisplayName("Should insert BaseNode before first BaseNode")
+    void shouldInsertBaseNodeBeforeFirstBaseNode() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      BaseNode firstBaseNode = new BaseNode(1);
+      BaseNode secondBaseNode = new BaseNode(2);
+      BaseNode thirdBaseNode = new BaseNode(3);
+
+      list.addInTail(firstBaseNode);
+      list.addInTail(secondBaseNode);
+      list.addInTail(thirdBaseNode);
+
+      list.insertAfter(null, new BaseNode(4));
+
+      BaseNode insertedBaseNode = list.find(4);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(insertedBaseNode);
+      Assertions.assertNull(insertedBaseNode.getPrev());
+      Assertions.assertEquals(1, insertedBaseNode.getNext().getValue());
+      Assertions.assertEquals(4, firstBaseNode.getPrev().getValue());
+      Assertions.assertEquals(4, list.getHead().getValue());
+      Assertions.assertEquals(3, list.getTail().getValue());
+    }
+
+    @Test
+    @DisplayName("Should insert BaseNode to the end")
+    void shouldInsertBaseNodeToTheEnd() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      BaseNode firstBaseNode = new BaseNode(1);
+      BaseNode secondBaseNode = new BaseNode(2);
+      BaseNode thirdBaseNode = new BaseNode(3);
+
+      list.addInTail(firstBaseNode);
+      list.addInTail(secondBaseNode);
+      list.addInTail(thirdBaseNode);
+
+      list.insertAfter(thirdBaseNode, new BaseNode(4));
+
+      BaseNode insertedBaseNode = list.find(4);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNotNull(insertedBaseNode);
+      Assertions.assertEquals(3, insertedBaseNode.getPrev().getValue());
+      Assertions.assertNull(insertedBaseNode.getNext());
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertEquals(4, list.getTail().getValue());
+    }
+
+    @Test
+    @DisplayName("Should insert BaseNode in empty list")
+    void shouldInsertBaseNodeInEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.insertAfter(null, new BaseNode(4));
+
+      BaseNode insertedBaseNode = list.find(4);
+
+      Assertions.assertEquals(1, list.count());
+      Assertions.assertNotNull(insertedBaseNode);
+      Assertions.assertNull(insertedBaseNode.getPrev());
+      Assertions.assertNull(insertedBaseNode.getNext());
+      Assertions.assertEquals(4, list.getHead().getValue());
+      Assertions.assertEquals(4, list.getTail().getValue());
+    }
+  }
+
 //  @Nested
 //  @DisplayName("clear method")
 //  class ClearMethod {

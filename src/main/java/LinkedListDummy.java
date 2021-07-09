@@ -137,7 +137,9 @@ public class LinkedListDummy {
   }
 
   public void insertAfter(BaseNode _nodeAfter, BaseNode _nodeToInsert) {
-    insertAfterNode(head, _nodeAfter, _nodeToInsert);
+    BaseNode nodeAfter = _nodeAfter == null ? head : _nodeAfter;
+
+    insertAfterNode(head, nodeAfter, _nodeToInsert);
   }
 }
 
