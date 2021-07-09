@@ -21,35 +21,37 @@ public class LinkedListDummyTest {
       list.addInTail(new BaseNode(1));
 
       BaseNode result = list.find(1);
+      BaseNode head = list.getHead();
 
       Assertions.assertEquals(1, result.getValue());
-      Assertions.assertNull(result.getPrev());
-//      Assertions.assertEquals(2, result.getNext().getValue());
+      Assertions.assertEquals(head, result);
+      Assertions.assertTrue(head.getPrev() instanceof DummyNode);
+      Assertions.assertEquals(2, result.getNext().getValue());
     }
 
-//    @Test
-//    @DisplayName("Should not find BaseNode")
-//    void shouldNotFindBaseNode() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(2));
-//      list.addInTail(new BaseNode(3));
-//
-//      BaseNode result = list.find(15);
-//
-//      Assertions.assertNull(result);
-//    }
-//
-//    @Test
-//    @DisplayName("Should not find BaseNode in empty list")
-//    void shouldNotFindBaseNodeInEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      BaseNode result = list.find(15);
-//
-//      Assertions.assertNull(result);
-//    }
+    @Test
+    @DisplayName("Should not find BaseNode")
+    void shouldNotFindBaseNode() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(2));
+      list.addInTail(new BaseNode(3));
+
+      BaseNode result = list.find(15);
+
+      Assertions.assertNull(result);
+    }
+
+    @Test
+    @DisplayName("Should not find BaseNode in empty list")
+    void shouldNotFindBaseNodeInEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      BaseNode result = list.find(15);
+
+      Assertions.assertNull(result);
+    }
   }
 //
 //  @Nested
