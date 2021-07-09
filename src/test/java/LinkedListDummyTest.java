@@ -241,87 +241,87 @@ public class LinkedListDummyTest {
     }
   }
 
-//  @Nested
-//  @DisplayName("removeAll method")
-//  class RemoveAllMethod {
-//    @Test
-//    @DisplayName("Should remove one BaseNode")
-//    void shouldRemoveOneBaseNode() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//
-//      list.removeAll(1);
-//
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.find(1));
-//      Assertions.assertNull(list.head);
-//      Assertions.assertNull(list.tail);
-//    }
-//
-//    @Test
-//    @DisplayName("Should remove several BaseNodes")
-//    void shouldRemoveSeveralBaseNodes() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(5));
-//      list.addInTail(new BaseNode(10));
-//      list.addInTail(new BaseNode(2));
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(1));
-//
-//      list.removeAll(1);
-//
-//      Assertions.assertEquals(3, list.count());
-//      Assertions.assertEquals(0, list.findAll(1).size());
-//      Assertions.assertEquals(5, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(10, list.head.next.value);
-//      Assertions.assertEquals(2, list.tail.value);
-//      Assertions.assertEquals(10, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
-//
-//    @Test
-//    @DisplayName("Should return empty list")
-//    void shouldReturnEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.removeAll(1);
-//
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.head);
-//      Assertions.assertNull(list.tail);
-//    }
-//
-//    @Test
-//    @DisplayName("Should not remove not existing values")
-//    void shouldNotRemoveNotExistingValues() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(5));
-//      list.addInTail(new BaseNode(10));
-//      list.addInTail(new BaseNode(2));
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(1));
-//
-//      list.removeAll(100);
-//
-//      Assertions.assertEquals(7, list.count());
-//      Assertions.assertEquals(0, list.findAll(100).size());
-//      Assertions.assertEquals(1, list.head.value);
-//      Assertions.assertNull(list.head.prev);
-//      Assertions.assertEquals(1, list.head.next.value);
-//      Assertions.assertEquals(1, list.tail.value);
-//      Assertions.assertEquals(1, list.tail.prev.value);
-//      Assertions.assertNull(list.tail.next);
-//    }
-//  }
-//
+  @Nested
+  @DisplayName("removeAll method")
+  class RemoveAllMethod {
+    @Test
+    @DisplayName("Should remove one BaseNode")
+    void shouldRemoveOneBaseNode() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.find(1));
+      Assertions.assertNull(list.getHead());
+      Assertions.assertNull(list.getTail());
+    }
+
+    @Test
+    @DisplayName("Should remove several BaseNodes")
+    void shouldRemoveSeveralBaseNodes() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(5));
+      list.addInTail(new BaseNode(10));
+      list.addInTail(new BaseNode(2));
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(1));
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertEquals(0, list.findAll(1).size());
+      Assertions.assertEquals(5, list.getHead().getValue());
+      Assertions.assertNull(list.getHead().getPrev());
+      Assertions.assertEquals(10, list.getHead().getNext().getValue());
+      Assertions.assertEquals(2, list.getTail().getValue());
+      Assertions.assertEquals(10, list.getTail().getPrev().getValue());
+      Assertions.assertNull(list.getTail().getNext());
+    }
+
+    @Test
+    @DisplayName("Should return empty list")
+    void shouldReturnEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.removeAll(1);
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.getHead());
+      Assertions.assertNull(list.getTail());
+    }
+
+    @Test
+    @DisplayName("Should not remove not existing values")
+    void shouldNotRemoveNotExistingValues() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(5));
+      list.addInTail(new BaseNode(10));
+      list.addInTail(new BaseNode(2));
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(1));
+
+      list.removeAll(100);
+
+      Assertions.assertEquals(7, list.count());
+      Assertions.assertEquals(0, list.findAll(100).size());
+      Assertions.assertEquals(1, list.getHead().getValue());
+      Assertions.assertNull(list.getHead().getPrev());
+      Assertions.assertEquals(1, list.getHead().getNext().getValue());
+      Assertions.assertEquals(1, list.getTail().getValue());
+      Assertions.assertEquals(1, list.getTail().getPrev().getValue());
+      Assertions.assertNull(list.getTail().getNext());
+    }
+  }
+
 //  @Nested
 //  @DisplayName("insertAfter method")
 //  class InsertAfterMethod {

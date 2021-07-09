@@ -92,6 +92,11 @@ public class LinkedListDummy {
 
   public void removeAll(int _value) {
     // здесь будет ваш код удаления всех узлов по заданному значению
+    ArrayList<BaseNode> nodes = findAll(_value);
+
+    for (int i = 0; i < nodes.size(); i += 1) {
+      remove(_value);
+    }
   }
 
   public void clear() {
