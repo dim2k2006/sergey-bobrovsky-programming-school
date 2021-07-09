@@ -25,7 +25,7 @@ public class LinkedListDummyTest {
 
       Assertions.assertEquals(1, result.getValue());
       Assertions.assertEquals(head, result);
-      Assertions.assertTrue(head.getPrev() instanceof DummyNode);
+      Assertions.assertNull(head.getPrev());
       Assertions.assertEquals(2, result.getNext().getValue());
     }
 
@@ -116,11 +116,11 @@ public class LinkedListDummyTest {
       Assertions.assertEquals(4, list.count());
       Assertions.assertNull(list.find(18));
       Assertions.assertEquals(1, list.getHead().getValue());
-      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertNull(list.getHead().getPrev());
       Assertions.assertEquals(6, list.getHead().getNext().getValue());
       Assertions.assertEquals(42, list.getTail().getValue());
       Assertions.assertEquals(2, list.getTail().getPrev().getValue());
-      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+      Assertions.assertNull(list.getTail().getNext());
     }
 
     @Test
@@ -138,11 +138,11 @@ public class LinkedListDummyTest {
       Assertions.assertEquals(2, list.count());
       Assertions.assertNull(list.find(18));
       Assertions.assertEquals(1, list.getHead().getValue());
-      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertNull(list.getHead().getPrev());
       Assertions.assertEquals(6, list.getHead().getNext().getValue());
       Assertions.assertEquals(6, list.getTail().getValue());
       Assertions.assertEquals(1, list.getTail().getPrev().getValue());
-      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+      Assertions.assertNull(list.getTail().getNext());
     }
 
     @Test
@@ -160,11 +160,11 @@ public class LinkedListDummyTest {
       Assertions.assertEquals(2, list.count());
       Assertions.assertNull(list.find(6));
       Assertions.assertEquals(1, list.getHead().getValue());
-      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertNull(list.getHead().getPrev());
       Assertions.assertEquals(18, list.getHead().getNext().getValue());
       Assertions.assertEquals(18, list.getTail().getValue());
       Assertions.assertEquals(1, list.getTail().getPrev().getValue());
-      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+      Assertions.assertNull(list.getTail().getNext());
     }
 
     @Test
@@ -182,11 +182,11 @@ public class LinkedListDummyTest {
       Assertions.assertEquals(2, list.count());
       Assertions.assertNull(list.find(1));
       Assertions.assertEquals(6, list.getHead().getValue());
-      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertNull(list.getHead().getPrev());
       Assertions.assertEquals(18, list.getHead().getNext().getValue());
       Assertions.assertEquals(18, list.getTail().getValue());
       Assertions.assertEquals(6, list.getTail().getPrev().getValue());
-      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+      Assertions.assertNull(list.getTail().getNext());
     }
 
     @Test
@@ -217,11 +217,11 @@ public class LinkedListDummyTest {
       Assertions.assertFalse(result);
       Assertions.assertEquals(3, list.count());
       Assertions.assertEquals(1, list.getHead().getValue());
-      Assertions.assertTrue(list.getHead().getPrev() instanceof DummyNode);
+      Assertions.assertNull(list.getHead().getPrev());
       Assertions.assertEquals(5, list.getHead().getNext().getValue());
       Assertions.assertEquals(10, list.getTail().getValue());
       Assertions.assertEquals(5, list.getTail().getPrev().getValue());
-      Assertions.assertTrue(list.getTail().getNext() instanceof DummyNode);
+      Assertions.assertNull(list.getTail().getNext());
     }
 
     @Test

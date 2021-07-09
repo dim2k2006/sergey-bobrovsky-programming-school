@@ -13,29 +13,17 @@ public class LinkedListDummy {
   }
 
   public BaseNode getHead() {
-    BaseNode node = head.getNext();
-
-    if (node instanceof DummyNode) {
-      return null;
-    }
-
-    return node;
+    return head.getNext();
   }
 
   public void setHead(BaseNode node) {
-    node.setNext(head.getNext());
+    node.setNext(head.getNextWithDummy());
     node.setPrev(head);
     head.setNext(node);
   }
 
   public BaseNode getTail() {
-    BaseNode node = tail.getPrev();
-
-    if (node instanceof DummyNode) {
-      return null;
-    }
-
-    return node;
+    return tail.getPrev();
   }
 
   public void setTail(BaseNode node) {
@@ -45,7 +33,7 @@ public class LinkedListDummy {
   }
 
   public void addInTail(BaseNode _item) {
-    insertAfter(tail.getPrev(), _item);
+    insertAfter(tail.getPrevWithDummy(), _item);
   }
 
   private BaseNode findByValue(int value, BaseNode node) {
@@ -57,7 +45,7 @@ public class LinkedListDummy {
       return node;
     }
 
-    return findByValue(value, node.getNext());
+    return findByValue(value, node.getNextWithDummy());
   }
 
   public BaseNode find(int _value) {
@@ -73,7 +61,7 @@ public class LinkedListDummy {
       accumulator.add(node);
     }
 
-    return findAllByValue(value, node.getNext(), accumulator);
+    return findAllByValue(value, node.getNextWithDummy(), accumulator);
   }
 
   public ArrayList<BaseNode> findAll(int _value) {
@@ -88,13 +76,13 @@ public class LinkedListDummy {
     }
 
     if (node.getValue() == value) {
-      node.getPrev().setNext(node.getNext());
-      node.getNext().setPrev(node.getPrev());
+      node.getPrevWithDummy().setNext(node.getNextWithDummy());
+      node.getNextWithDummy().setPrev(node.getPrevWithDummy());
 
       return true;
     }
 
-    return removeNodeByValue(value, node.getNext());
+    return removeNodeByValue(value, node.getNextWithDummy());
   }
 
   public boolean remove(int _value) {
@@ -119,7 +107,7 @@ public class LinkedListDummy {
       return 0;
     }
 
-    return 1 + getCount(node.getNext());
+    return 1 + getCount(node.getNextWithDummy());
   }
 
   public int count() {
@@ -133,14 +121,14 @@ public class LinkedListDummy {
 
     if (currentNode == nodeAfter) {
       nodeToInsert.setPrev(currentNode);
-      nodeToInsert.setNext(currentNode.getNext());
-      currentNode.getNext().setPrev(nodeToInsert);
+      nodeToInsert.setNext(currentNode.getNextWithDummy());
+      currentNode.getNextWithDummy().setPrev(nodeToInsert);
       currentNode.setNext(nodeToInsert);
 
       return;
     }
 
-    insertAfterNode(currentNode.getNext(), nodeAfter, nodeToInsert);
+    insertAfterNode(currentNode.getNextWithDummy(), nodeAfter, nodeToInsert);
   }
 
   public void insertAfter(BaseNode _nodeAfter, BaseNode _nodeToInsert) {
@@ -168,10 +156,26 @@ class BaseNode {
   }
 
   public BaseNode getPrev() {
+    if (prev.isDummy()) {
+      return null;
+    }
+
+    return prev;
+  }
+
+  public BaseNode getPrevWithDummy() {
     return prev;
   }
 
   public BaseNode getNext() {
+    if (next.isDummy()) {
+      return null;
+    }
+
+    return next;
+  }
+
+  public BaseNode getNextWithDummy() {
     return next;
   }
 
