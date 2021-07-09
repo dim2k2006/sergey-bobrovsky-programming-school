@@ -101,6 +101,11 @@ public class LinkedListDummy {
 
   public void clear() {
     // здесь будет ваш код очистки всего списка
+    head = new DummyNode();
+    tail = new DummyNode();
+
+    head.setNext(tail);
+    tail.setPrev(head);
   }
 
   private int getCount(BaseNode node) {

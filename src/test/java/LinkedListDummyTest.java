@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class LinkedListDummyTest {
   @Nested
@@ -444,37 +445,65 @@ public class LinkedListDummyTest {
     }
   }
 
-//  @Nested
-//  @DisplayName("clear method")
-//  class ClearMethod {
-//    @Test
-//    @DisplayName("Should clear not empty list")
-//    void shouldClearList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.addInTail(new BaseNode(1));
-//      list.addInTail(new BaseNode(2));
-//      list.addInTail(new BaseNode(3));
-//
-//      list.clear();
-//
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.head);
-//      Assertions.assertNull(list.tail);
-//    }
-//
-//    @Test
-//    @DisplayName("Should clear empty list")
-//    void shouldClearEmptyList() {
-//      LinkedListDummy list = new LinkedListDummy();
-//
-//      list.clear();
-//
-//      Assertions.assertEquals(0, list.count());
-//      Assertions.assertNull(list.head);
-//      Assertions.assertNull(list.tail);
-//    }
-//  }
-}
+  @Nested
+  @DisplayName("clear method")
+  class ClearMethod {
+    @Test
+    @DisplayName("Should clear not empty list")
+    void shouldClearList() {
+      LinkedListDummy list = new LinkedListDummy();
 
-// count method ???
+      list.addInTail(new BaseNode(1));
+      list.addInTail(new BaseNode(2));
+      list.addInTail(new BaseNode(3));
+
+      list.clear();
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.getHead());
+      Assertions.assertNull(list.getTail());
+    }
+
+    @Test
+    @DisplayName("Should clear empty list")
+    void shouldClearEmptyList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      list.clear();
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.getHead());
+      Assertions.assertNull(list.getTail());
+    }
+  }
+
+  @Nested
+  @DisplayName("count method")
+  class CountMethod {
+    @Test
+    @DisplayName("Should generate empty linked list")
+    void shouldGenerateEmptyLinkedList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      Assertions.assertEquals(0, list.count());
+    }
+
+    @Test
+    @DisplayName("Should generate not empty linked list")
+    void shouldGenerateNotEmptyLinkedList() {
+      LinkedListDummy list = new LinkedListDummy();
+
+      Random rd = new Random();
+
+      int upperbound = 100;
+
+      int[] arr = new int[rd.nextInt(upperbound)];
+
+      for (int i = 0; i < arr.length; i++) {
+        list.addInTail(new BaseNode(rd.nextInt(upperbound)));
+      }
+
+      Assertions.assertEquals(arr.length, list.count());
+    }
+  }
+}
