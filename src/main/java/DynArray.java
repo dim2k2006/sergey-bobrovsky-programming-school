@@ -1,15 +1,12 @@
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
-public class DynArray<T>
-{
-  public T [] array;
+public class DynArray<T> {
+  public T[] array;
   public int count;
   public int capacity;
   Class<Integer> clazz;
 
-  public DynArray(Class<Integer> clz)
-  {
+  public DynArray(Class<Integer> clz) {
     clazz = clz; // нужен для безопасного приведения типов
     // new DynArray<Integer>(Integer.class);
 
@@ -18,8 +15,7 @@ public class DynArray<T>
   }
 
   @SuppressWarnings("unchecked")
-  public void makeArray(int new_capacity)
-  {
+  public void makeArray(int new_capacity) {
     // ваш код
     if (count == 0) {
       array = (T[]) Array.newInstance(this.clazz, new_capacity);
@@ -47,24 +43,27 @@ public class DynArray<T>
     return result;
   }
 
-  public T getItem(int index)
-  {
+  public T getItem(int index) {
     // ваш код
     return null;
   }
 
-  public void append(T itm)
-  {
+  public void append(T item) {
+    // ваш код
+    if (count == capacity) {
+      makeArray(capacity * 2);
+    }
+
+    array[count] = item;
+
+    count = getCount(array);
+  }
+
+  public void insert(T itm, int index) {
     // ваш код
   }
 
-  public void insert(T itm, int index)
-  {
-    // ваш код
-  }
-
-  public void remove(int index)
-  {
+  public void remove(int index) {
     // ваш код
   }
 
