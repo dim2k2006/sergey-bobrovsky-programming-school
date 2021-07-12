@@ -45,7 +45,17 @@ public class DynArray<T> {
 
   public T getItem(int index) {
     // ваш код
-    return null;
+    if (index < 0) {
+      throw new IndexOutOfBoundsException("Index can not be negative.");
+    }
+
+    if (index >= capacity) {
+      throw new IndexOutOfBoundsException("Index can not be greater then actual capacity.");
+    }
+
+    T result = array[index];
+
+    return result;
   }
 
   public void append(T item) {

@@ -62,4 +62,58 @@ public class DynArrayTest {
       Assertions.assertEquals(32, array.capacity);
     }
   }
+
+  @Nested
+  @DisplayName("getItem method")
+  class GetItemMethod {
+    @Test
+    @DisplayName("Should return item by index")
+    public void shouldReturnItemByIndex() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+
+      Assertions.assertEquals(2, array.getItem(1));
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the index is negative")
+    public void shouldThrowAnExceptionIfTheIndexIsNegative() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+
+      Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+        array.getItem(-1);
+      });
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the index is greater then array capacity")
+    public void shouldThrowAnExceptionIfTheIndexIsGreaterThenArrayCapacity() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+
+      Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+        array.getItem(20);
+      });
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the array is empty")
+    public void shouldThrowAnExceptionIfTheArrayIsEmpty() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+        array.getItem(4);
+      });
+    }
+  }
 }
