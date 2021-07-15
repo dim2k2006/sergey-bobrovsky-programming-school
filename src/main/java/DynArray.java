@@ -1,5 +1,4 @@
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class DynArray<T> {
   public T[] array;
