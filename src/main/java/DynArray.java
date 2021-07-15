@@ -111,8 +111,6 @@ public class DynArray<T> {
     System.arraycopy(array, 0, newArray, 0, index);
     System.arraycopy(array, index + 1, newArray, index, count - index - 1);
 
-    System.out.println(Arrays.toString(newArray));
-
     array = newArray;
 
     count = getCount(array);
