@@ -30,9 +30,22 @@ public class Stack<T> {
     return array.length;
   }
 
+  @SuppressWarnings("unchecked")
   public T pop() {
     // ваш код
-    return null;  // если стек пустой
+    if (array.length == 0) {
+      return null;
+    }
+
+    T result = array[array.length - 1];
+
+    T[] newArray = (T[]) Array.newInstance(this.clazz, array.length - 1);
+
+    System.arraycopy(array, 0, newArray, 0, array.length - 1);
+
+    array = newArray;
+
+    return result;
   }
 
   public void push(T val) {

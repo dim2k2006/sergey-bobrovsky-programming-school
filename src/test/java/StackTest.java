@@ -61,4 +61,32 @@ public class StackTest {
       Assertions.assertNull(stack.peek());
     }
   }
+
+  @Nested
+  @DisplayName("pop method")
+  class PopMethod {
+    @Test
+    @DisplayName("Should return last item from stack and reduce stack size")
+    public void shouldReturnLastItemFromStackAndReduceStackSize() {
+      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+
+      stack.push(1);
+      stack.push(2);
+      stack.push(3);
+
+      int last = stack.pop();
+
+      Assertions.assertEquals(3, last);
+      Assertions.assertEquals(2, stack.size());
+    }
+
+    @Test
+    @DisplayName("Should return null if stack is empty")
+    public void shouldReturnNullIfStackIsEmpty() {
+      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+
+      Assertions.assertNull(stack.pop());
+      Assertions.assertEquals(0, stack.size());
+    }
+  }
 }
