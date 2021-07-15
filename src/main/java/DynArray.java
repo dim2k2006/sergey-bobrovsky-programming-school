@@ -53,6 +53,10 @@ public class DynArray<T> {
       throw new IndexOutOfBoundsException("Index can not be greater then actual capacity.");
     }
 
+    if (count == 0) {
+      throw new IndexOutOfBoundsException("List is empty.");
+    }
+
     T result = array[index];
 
     return result;
