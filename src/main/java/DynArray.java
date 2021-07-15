@@ -104,7 +104,6 @@ public class DynArray<T> {
   @SuppressWarnings("unchecked")
   public void remove(int index) {
     // ваш код
-
     T[] newArray = (T[]) Array.newInstance(this.clazz, capacity);
 
     System.arraycopy(array, 0, newArray, 0, index);
@@ -114,10 +113,18 @@ public class DynArray<T> {
 
     count = getCount(array);
 
-    if (count < capacity / 2) {
-      int newCapacity = (int) (capacity / 1.5);
+    boolean isShrinkable = count < capacity / 2;
 
-      makeArray(newCapacity);
+    if (!isShrinkable) {
+      return;
     }
+
+    int newCapacity = (int) (capacity / 1.5);
+
+    if (newCapacity < 16) {
+      return;
+    }
+
+    makeArray(newCapacity);
   }
 }

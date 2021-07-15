@@ -259,7 +259,7 @@ public class DynArrayTest {
     }
 
     @Test
-    @DisplayName("Should remove item from full array")
+    @DisplayName("Should remove item from array and not reduce capacity")
     public void shouldRemoveItemFromFullArray() {
       DynArray<Integer> array = new DynArray<Integer>(Integer.class);
 
@@ -273,7 +273,24 @@ public class DynArrayTest {
 
       Assertions.assertEquals(4, array.count);
       Assertions.assertEquals(4, array.getItem(2));
-      Assertions.assertEquals(10, array.capacity);
+      Assertions.assertEquals(16, array.capacity);
+    }
+
+    @Test
+    @DisplayName("Should remove item from array and reduce capacity")
+    public void shouldRemoveItemFromArrayAndReduceCapacity() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      for (int i = 0; i < new int[50].length; i++) {
+        array.append(1);
+      }
+
+      for (int i = 0; i < new int[25].length; i++) {
+        array.remove(i);
+      }
+
+      Assertions.assertEquals(25, array.count);
+      Assertions.assertEquals(42, array.capacity);
     }
   }
 }
