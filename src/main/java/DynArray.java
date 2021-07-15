@@ -73,8 +73,32 @@ public class DynArray<T> {
     count = getCount(array);
   }
 
+  @SuppressWarnings("unchecked")
   public void insert(T itm, int index) {
     // ваш код
+    if (count + 1 > capacity) {
+      makeArray(capacity * 2);
+    }
+
+    if (count - 1 == index) {
+      append(itm);
+
+      return;
+    }
+
+    T[] newArray = (T[]) Array.newInstance(this.clazz, capacity);
+
+    System.arraycopy(array, 0, newArray, 0, index);
+
+    newArray[index] = itm;
+
+    int restLength = count - index;
+
+    System.arraycopy(array,index,newArray,index + 1,restLength);
+
+    array = newArray;
+
+    count = getCount(array);
   }
 
   public void remove(int index) {
