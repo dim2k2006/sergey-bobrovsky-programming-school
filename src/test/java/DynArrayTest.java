@@ -210,4 +210,70 @@ public class DynArrayTest {
       Assertions.assertEquals(4, array.getItem(3));
     }
   }
+
+  @Nested
+  @DisplayName("remove method")
+  class RemoveMethod {
+    @Test
+    @DisplayName("Should remove item from the array")
+    public void shouldRemoveItemFromTheArray() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+
+      array.remove(1);
+
+      Assertions.assertEquals(2, array.count);
+      Assertions.assertEquals(1, array.getItem(0));
+      Assertions.assertEquals(3, array.getItem(1));
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the index is negative")
+    public void shouldThrowAnExceptionIfTheIndexIsNegative() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+
+      Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+        array.remove(-1);
+      });
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the index is greater then array capacity")
+    public void shouldThrowAnExceptionIfTheIndexIsGreaterThenArrayCapacity() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+
+      Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+        array.remove(20);
+      });
+    }
+
+    @Test
+    @DisplayName("Should remove item from full array")
+    public void shouldRemoveItemFromFullArray() {
+      DynArray<Integer> array = new DynArray<Integer>(Integer.class);
+
+      array.append(1);
+      array.append(2);
+      array.append(3);
+      array.append(4);
+      array.append(5);
+
+      array.remove(2);
+
+      Assertions.assertEquals(4, array.count);
+      Assertions.assertEquals(4, array.getItem(2));
+      Assertions.assertEquals(10, array.capacity);
+    }
+  }
 }

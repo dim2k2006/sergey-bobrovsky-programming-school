@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class DynArray<T> {
   public T[] array;
@@ -101,8 +102,25 @@ public class DynArray<T> {
     count = getCount(array);
   }
 
+  @SuppressWarnings("unchecked")
   public void remove(int index) {
     // ваш код
-  }
 
+    T[] newArray = (T[]) Array.newInstance(this.clazz, capacity);
+
+    System.arraycopy(array, 0, newArray, 0, index);
+    System.arraycopy(array, index + 1, newArray, index, count - index - 1);
+
+    System.out.println(Arrays.toString(newArray));
+
+    array = newArray;
+
+    count = getCount(array);
+
+    if (count < capacity / 2) {
+      int newCapacity = (int) (capacity / 1.5);
+
+      makeArray(newCapacity);
+    }
+  }
 }
