@@ -121,10 +121,6 @@ public class DynArray<T> {
 
     int newCapacity = (int) (capacity / 1.5);
 
-    if (newCapacity < 16) {
-      return;
-    }
-
-    makeArray(newCapacity);
+    makeArray(Math.max(newCapacity, 16));
   }
 }
