@@ -3,9 +3,9 @@ import java.util.*;
 
 public class Stack<T> {
   public T[] array;
-  Class<Integer> clazz;
+  Class<T> clazz;
 
-  public Stack(Class<Integer> clz) {
+  public Stack(Class<T> clz) {
     // инициализация внутреннего хранилища стека
     clazz = clz;
 
