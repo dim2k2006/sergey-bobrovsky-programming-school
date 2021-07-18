@@ -20,8 +20,8 @@ public class StackExtraTask {
 
     Collections.reverse(expressionItems);
 
-    Stack<String> stack1 = new Stack<String>(String.class);
-    Stack<Integer> stack2 = new Stack<Integer>(Integer.class);
+    Stack<String> stack1 = new Stack<String>();
+    Stack<Integer> stack2 = new Stack<Integer>();
 
     for (Object expressionItem : expressionItems) {
       stack1.push((String) expressionItem);

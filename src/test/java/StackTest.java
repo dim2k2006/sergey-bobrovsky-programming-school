@@ -10,7 +10,7 @@ public class StackTest {
     @Test
     @DisplayName("Should push items to stack")
     public void shouldPushItemsToStack() {
-      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+      Stack<Integer> stack = new Stack<Integer>();
 
       stack.push(1);
 
@@ -35,7 +35,7 @@ public class StackTest {
     @Test
     @DisplayName("Should return last item from stack")
     public void shouldReturnLastItemFromStack() {
-      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+      Stack<Integer> stack = new Stack<Integer>();
 
       stack.push(1);
 
@@ -56,7 +56,7 @@ public class StackTest {
     @Test
     @DisplayName("Should return null if stack is empty")
     public void shouldReturnNullIfStackIsEmpty() {
-      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+      Stack<Integer> stack = new Stack<Integer>();
 
       Assertions.assertNull(stack.peek());
     }
@@ -68,7 +68,7 @@ public class StackTest {
     @Test
     @DisplayName("Should return last item from stack and reduce stack size")
     public void shouldReturnLastItemFromStackAndReduceStackSize() {
-      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+      Stack<Integer> stack = new Stack<Integer>();
 
       stack.push(1);
       stack.push(2);
@@ -83,7 +83,7 @@ public class StackTest {
     @Test
     @DisplayName("Should return null if stack is empty")
     public void shouldReturnNullIfStackIsEmpty() {
-      Stack<Integer> stack = new Stack<Integer>(Integer.class);
+      Stack<Integer> stack = new Stack<Integer>();
 
       Assertions.assertNull(stack.pop());
       Assertions.assertEquals(0, stack.size());

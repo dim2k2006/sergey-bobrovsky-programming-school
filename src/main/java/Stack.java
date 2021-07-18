@@ -1,24 +1,19 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Stack<T> {
-  public T[] array;
-  Class<T> clazz;
+  public StackItem<T>[] array;
 
-  public Stack(Class<T> clz) {
+  public Stack() {
     // инициализация внутреннего хранилища стека
-    clazz = clz;
-
     makeArray(0);
   }
 
-  @SuppressWarnings("unchecked")
   public void makeArray(int new_capacity) {
     if (array == null) {
-      array = (T[]) Array.newInstance(this.clazz, new_capacity);
+      array = new StackItem[new_capacity];
     }
 
-    T[] newArray = (T[]) Array.newInstance(this.clazz, new_capacity);
+    StackItem<T>[] newArray = new StackItem[new_capacity];
 
     System.arraycopy(array, 0, newArray, 0, array.length);
 
@@ -30,20 +25,21 @@ public class Stack<T> {
     return array.length;
   }
 
-  @SuppressWarnings("unchecked")
   public T pop() {
     // ваш код
     if (array.length == 0) {
       return null;
     }
 
-    T result = array[array.length - 1];
+    StackItem<T> item = array[array.length - 1];
 
-    T[] newArray = (T[]) Array.newInstance(this.clazz, array.length - 1);
+    StackItem<T>[] newArray = new StackItem[array.length - 1];
 
     System.arraycopy(array, 0, newArray, 0, array.length - 1);
 
     array = newArray;
+
+    T result = item.value;
 
     return result;
   }
@@ -52,7 +48,7 @@ public class Stack<T> {
     // ваш код
     makeArray(array.length + 1);
 
-    array[array.length - 1] = val;
+    array[array.length - 1] = new StackItem<T>(val);
   }
 
   public T peek() {
@@ -61,8 +57,16 @@ public class Stack<T> {
       return null;
     }
 
-    T result = array[array.length - 1];
+    StackItem<T> result = array[array.length - 1];
 
-    return result;
+    return result.value;
+  }
+}
+
+class StackItem<T> {
+  public T value;
+
+  public StackItem(T val) {
+    value = val;
   }
 }
