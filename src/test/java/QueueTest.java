@@ -57,4 +57,32 @@ public class QueueTest {
       Assertions.assertNull(queue.dequeue());
     }
   }
+
+  @Nested
+  @DisplayName("size method")
+  class SizeMethod {
+    @Test
+    @DisplayName("Should count queue size")
+    public void shouldCountQueueSize() {
+      Queue<Integer> queue = new Queue<Integer>();
+
+      Assertions.assertEquals(0, queue.size());
+
+      queue.enqueue(1);
+
+      Assertions.assertEquals(1, queue.size());
+
+      queue.enqueue(2);
+
+      Assertions.assertEquals(2, queue.size());
+
+      queue.dequeue();
+
+      Assertions.assertEquals(1, queue.size());
+
+      queue.dequeue();
+
+      Assertions.assertEquals(0, queue.size());
+    }
+  }
 }
