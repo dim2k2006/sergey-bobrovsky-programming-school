@@ -23,4 +23,38 @@ public class QueueTest {
       Assertions.assertEquals(2, queue.size());
     }
   }
+
+  @Nested
+  @DisplayName("dequeue method")
+  class DequeueMethod {
+    @Test
+    @DisplayName("Should return item from the head of queue")
+    public void shouldReturnItemFromTheHeadOfQueue() {
+      Queue<Integer> queue = new Queue<Integer>();
+
+      queue.enqueue(1);
+      queue.enqueue(2);
+      queue.enqueue(3);
+
+      Assertions.assertEquals(1, queue.dequeue());
+
+      Assertions.assertEquals(2, queue.size());
+
+      Assertions.assertEquals(2, queue.dequeue());
+
+      Assertions.assertEquals(1, queue.size());
+
+      Assertions.assertEquals(3, queue.dequeue());
+
+      Assertions.assertEquals(0, queue.size());
+    }
+
+    @Test
+    @DisplayName("Should return null if queue is empty")
+    public void shouldReturnNullIfQueueIsEmpty() {
+      Queue<Integer> queue = new Queue<Integer>();
+
+      Assertions.assertNull(queue.dequeue());
+    }
+  }
 }

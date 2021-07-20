@@ -15,11 +15,27 @@ public class Queue<T> {
     System.arraycopy(array, 0, newArray, 0, array.length);
 
     array = newArray;
+
+    array[array.length - 1] = new QueueItem<T>(item);
   }
 
   public T dequeue() {
     // выдача из головы
-    return null; // null если очередь пустая
+    if (array.length == 0) {
+      return null;
+    }
+
+    QueueItem<T> queueItem = array[0];
+
+    T result = queueItem.value;
+
+    QueueItem<T>[] newArray = new QueueItem[array.length - 1];
+
+    System.arraycopy(array, 1, newArray, 0, array.length - 1);
+
+    array = newArray;
+
+    return result;
   }
 
   public int size() {
