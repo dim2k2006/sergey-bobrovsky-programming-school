@@ -51,7 +51,21 @@ public class Deque<T> {
 
   public T removeTail() {
     // удаление из хвоста
-    return null;
+    if (array.length == 0) {
+      return null;
+    }
+
+    DequeItem<T> item = array[array.length - 1];
+
+    DequeItem<T>[] newArray = new DequeItem[array.length - 1];
+
+    System.arraycopy(array, 0, newArray, 0, array.length - 1);
+
+    array = newArray;
+
+    T result = item.value;
+
+    return result;
   }
 
   public int size() {

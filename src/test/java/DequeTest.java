@@ -79,4 +79,34 @@ public class DequeTest {
       Assertions.assertEquals(2, queue.array[1].value);
     }
   }
+
+  @Nested
+  @DisplayName("removeTail method")
+  class RemoveTailMethod {
+    @Test
+    @DisplayName("Should remove items from the tail of queue")
+    public void shouldRemoveItemsFromTheHeadOfQueue() {
+      Deque<Integer> queue = new Deque<Integer>();
+
+      Assertions.assertEquals(0, queue.size());
+
+      Assertions.assertNull(queue.removeTail());
+
+      queue.addTail(1);
+
+      Assertions.assertEquals(1, queue.size());
+
+      queue.addTail(2);
+
+      Assertions.assertEquals(2, queue.size());
+
+      Assertions.assertEquals(2, queue.removeTail());
+
+      Assertions.assertEquals(1, queue.size());
+
+      Assertions.assertEquals(1, queue.removeTail());
+
+      Assertions.assertEquals(0, queue.size());
+    }
+  }
 }
