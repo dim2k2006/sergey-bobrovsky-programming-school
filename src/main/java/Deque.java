@@ -21,6 +21,13 @@ public class Deque<T> {
 
   public void addTail(T item) {
     // добавление в хвост
+    DequeItem<T>[] newArray = new DequeItem[array.length + 1];
+
+    System.arraycopy(array, 0, newArray, 0, array.length);
+
+    newArray[newArray.length - 1] = new DequeItem<T>(item);
+
+    array = newArray;
   }
 
   public T removeFront() {
