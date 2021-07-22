@@ -25,7 +25,21 @@ public class Deque<T> {
 
   public T removeFront() {
     // удаление из головы
-    return null;
+    if (array.length == 0) {
+      return null;
+    }
+
+    DequeItem<T> queueItem = array[0];
+
+    T result = queueItem.value;
+
+    DequeItem<T>[] newArray = new DequeItem[array.length - 1];
+
+    System.arraycopy(array, 1, newArray, 0, array.length - 1);
+
+    array = newArray;
+
+    return result;
   }
 
   public T removeTail() {
