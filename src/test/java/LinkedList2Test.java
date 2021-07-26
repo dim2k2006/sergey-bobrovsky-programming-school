@@ -14,13 +14,13 @@ public class LinkedList2Test {
     void shouldFindNodeByValue() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(2));
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(3));
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(2));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(3));
+      list.addInTail(new LInkedNode(1));
 
-      Node result = list.find(1);
+      LInkedNode result = list.find(1);
 
       Assertions.assertEquals(1, result.value);
       Assertions.assertNull(result.prev);
@@ -32,11 +32,11 @@ public class LinkedList2Test {
     void shouldNotFindNode() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(2));
-      list.addInTail(new Node(3));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(2));
+      list.addInTail(new LInkedNode(3));
 
-      Node result = list.find(15);
+      LInkedNode result = list.find(15);
 
       Assertions.assertNull(result);
     }
@@ -46,7 +46,7 @@ public class LinkedList2Test {
     void shouldNotFindNodeInEmptyList() {
       LinkedList2 list = new LinkedList2();
 
-      Node result = list.find(15);
+      LInkedNode result = list.find(15);
 
       Assertions.assertNull(result);
     }
@@ -60,9 +60,9 @@ public class LinkedList2Test {
     void shouldFindOneNode() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
 
-      ArrayList<Node> result = list.findAll(1);
+      ArrayList<LInkedNode> result = list.findAll(1);
 
       Assertions.assertEquals(1, result.size());
     }
@@ -72,13 +72,13 @@ public class LinkedList2Test {
     void shouldFindSeveralNodes() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(5));
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(19));
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(5));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(19));
+      list.addInTail(new LInkedNode(1));
 
-      ArrayList<Node> result = list.findAll(1);
+      ArrayList<LInkedNode> result = list.findAll(1);
 
       Assertions.assertEquals(3, result.size());
     }
@@ -88,7 +88,7 @@ public class LinkedList2Test {
     void shouldNotFindNodesInEmptyList() {
       LinkedList2 list = new LinkedList2();
 
-      ArrayList<Node> result = list.findAll(1);
+      ArrayList<LInkedNode> result = list.findAll(1);
 
       Assertions.assertEquals(0, result.size());
     }
@@ -102,11 +102,11 @@ public class LinkedList2Test {
     void shouldRemoveNodeByValue() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(6));
-      list.addInTail(new Node(18));
-      list.addInTail(new Node(2));
-      list.addInTail(new Node(42));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(6));
+      list.addInTail(new LInkedNode(18));
+      list.addInTail(new LInkedNode(2));
+      list.addInTail(new LInkedNode(42));
 
       boolean result = list.remove(18);
 
@@ -126,9 +126,9 @@ public class LinkedList2Test {
     void shouldRemoveLastNodeByValue() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(6));
-      list.addInTail(new Node(18));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(6));
+      list.addInTail(new LInkedNode(18));
 
       boolean result = list.remove(18);
 
@@ -148,9 +148,9 @@ public class LinkedList2Test {
     void shouldRemovePreLastNodeByValue() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(6));
-      list.addInTail(new Node(18));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(6));
+      list.addInTail(new LInkedNode(18));
 
       boolean result = list.remove(6);
 
@@ -170,9 +170,9 @@ public class LinkedList2Test {
     void shouldRemoveFirstNodeByValue() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(6));
-      list.addInTail(new Node(18));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(6));
+      list.addInTail(new LInkedNode(18));
 
       boolean result = list.remove(1);
 
@@ -206,9 +206,9 @@ public class LinkedList2Test {
     void shouldNotRemoveNotExistingValue() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(5));
-      list.addInTail(new Node(10));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(5));
+      list.addInTail(new LInkedNode(10));
 
       boolean result = list.remove(15);
 
@@ -227,7 +227,7 @@ public class LinkedList2Test {
     void shouldReturnEmptyList() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
 
       boolean result = list.remove(1);
 
@@ -247,7 +247,7 @@ public class LinkedList2Test {
     void shouldRemoveOneNode() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
 
       list.removeAll(1);
 
@@ -262,13 +262,13 @@ public class LinkedList2Test {
     void shouldRemoveSeveralNodes() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(5));
-      list.addInTail(new Node(10));
-      list.addInTail(new Node(2));
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(5));
+      list.addInTail(new LInkedNode(10));
+      list.addInTail(new LInkedNode(2));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(1));
 
       list.removeAll(1);
 
@@ -299,13 +299,13 @@ public class LinkedList2Test {
     void shouldNotRemoveNotExistingValues() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(5));
-      list.addInTail(new Node(10));
-      list.addInTail(new Node(2));
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(1));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(5));
+      list.addInTail(new LInkedNode(10));
+      list.addInTail(new LInkedNode(2));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(1));
 
       list.removeAll(100);
 
@@ -328,17 +328,17 @@ public class LinkedList2Test {
     void shouldInsertNodeInTheMiddleOfTheList() {
       LinkedList2 list = new LinkedList2();
 
-      Node firstNode = new Node(1);
-      Node secondNode = new Node(2);
-      Node thirdNode = new Node(3);
+      LInkedNode firstNode = new LInkedNode(1);
+      LInkedNode secondNode = new LInkedNode(2);
+      LInkedNode thirdNode = new LInkedNode(3);
 
       list.addInTail(firstNode);
       list.addInTail(secondNode);
       list.addInTail(thirdNode);
 
-      list.insertAfter(secondNode, new Node(4));
+      list.insertAfter(secondNode, new LInkedNode(4));
 
-      Node insertedNode = list.find(4);
+      LInkedNode insertedNode = list.find(4);
 
       Assertions.assertEquals(4, list.count());
       Assertions.assertNotNull(insertedNode);
@@ -353,17 +353,17 @@ public class LinkedList2Test {
     void shouldInsertNodeAfterFirstNode() {
       LinkedList2 list = new LinkedList2();
 
-      Node firstNode = new Node(1);
-      Node secondNode = new Node(2);
-      Node thirdNode = new Node(3);
+      LInkedNode firstNode = new LInkedNode(1);
+      LInkedNode secondNode = new LInkedNode(2);
+      LInkedNode thirdNode = new LInkedNode(3);
 
       list.addInTail(firstNode);
       list.addInTail(secondNode);
       list.addInTail(thirdNode);
 
-      list.insertAfter(firstNode, new Node(4));
+      list.insertAfter(firstNode, new LInkedNode(4));
 
-      Node insertedNode = list.find(4);
+      LInkedNode insertedNode = list.find(4);
 
       Assertions.assertEquals(4, list.count());
       Assertions.assertNotNull(insertedNode);
@@ -378,17 +378,17 @@ public class LinkedList2Test {
     void shouldInsertNodeBeforeFirstNode() {
       LinkedList2 list = new LinkedList2();
 
-      Node firstNode = new Node(1);
-      Node secondNode = new Node(2);
-      Node thirdNode = new Node(3);
+      LInkedNode firstNode = new LInkedNode(1);
+      LInkedNode secondNode = new LInkedNode(2);
+      LInkedNode thirdNode = new LInkedNode(3);
 
       list.addInTail(firstNode);
       list.addInTail(secondNode);
       list.addInTail(thirdNode);
 
-      list.insertAfter(null, new Node(4));
+      list.insertAfter(null, new LInkedNode(4));
 
-      Node insertedNode = list.find(4);
+      LInkedNode insertedNode = list.find(4);
 
       Assertions.assertEquals(4, list.count());
       Assertions.assertNotNull(insertedNode);
@@ -404,17 +404,17 @@ public class LinkedList2Test {
     void shouldInsertNodeToTheEnd() {
       LinkedList2 list = new LinkedList2();
 
-      Node firstNode = new Node(1);
-      Node secondNode = new Node(2);
-      Node thirdNode = new Node(3);
+      LInkedNode firstNode = new LInkedNode(1);
+      LInkedNode secondNode = new LInkedNode(2);
+      LInkedNode thirdNode = new LInkedNode(3);
 
       list.addInTail(firstNode);
       list.addInTail(secondNode);
       list.addInTail(thirdNode);
 
-      list.insertAfter(thirdNode, new Node(4));
+      list.insertAfter(thirdNode, new LInkedNode(4));
 
-      Node insertedNode = list.find(4);
+      LInkedNode insertedNode = list.find(4);
 
       Assertions.assertEquals(4, list.count());
       Assertions.assertNotNull(insertedNode);
@@ -429,9 +429,9 @@ public class LinkedList2Test {
     void shouldInsertNodeInEmptyList() {
       LinkedList2 list = new LinkedList2();
 
-      list.insertAfter(null, new Node(4));
+      list.insertAfter(null, new LInkedNode(4));
 
-      Node insertedNode = list.find(4);
+      LInkedNode insertedNode = list.find(4);
 
       Assertions.assertEquals(1, list.count());
       Assertions.assertNotNull(insertedNode);
@@ -450,9 +450,9 @@ public class LinkedList2Test {
     void shouldClearList() {
       LinkedList2 list = new LinkedList2();
 
-      list.addInTail(new Node(1));
-      list.addInTail(new Node(2));
-      list.addInTail(new Node(3));
+      list.addInTail(new LInkedNode(1));
+      list.addInTail(new LInkedNode(2));
+      list.addInTail(new LInkedNode(3));
 
       list.clear();
 

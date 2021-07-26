@@ -1,15 +1,15 @@
 import java.util.*;
 
 public class LinkedList2 {
-  public Node head;
-  public Node tail;
+  public LInkedNode head;
+  public LInkedNode tail;
 
   public LinkedList2() {
     head = null;
     tail = null;
   }
 
-  public void addInTail(Node _item) {
+  public void addInTail(LInkedNode _item) {
     if (head == null) {
       this.head = _item;
       this.head.next = null;
@@ -21,7 +21,7 @@ public class LinkedList2 {
     this.tail = _item;
   }
 
-  private Node findByValue(int value, Node node) {
+  private LInkedNode findByValue(int value, LInkedNode node) {
     if (node == null) {
       return null;
     }
@@ -33,12 +33,12 @@ public class LinkedList2 {
     return findByValue(value, node.next);
   }
 
-  public Node find(int _value) {
+  public LInkedNode find(int _value) {
     // здесь будет ваш код поиска
     return findByValue(_value, head);
   }
 
-  private ArrayList<Node> findAllByValue(int value, Node node, ArrayList<Node> accumulator) {
+  private ArrayList<LInkedNode> findAllByValue(int value, LInkedNode node, ArrayList<LInkedNode> accumulator) {
     if (node == null) {
       return accumulator;
     }
@@ -50,13 +50,13 @@ public class LinkedList2 {
     return findAllByValue(value, node.next, accumulator);
   }
 
-  public ArrayList<Node> findAll(int _value) {
-    ArrayList<Node> nodes = new ArrayList<Node>();
+  public ArrayList<LInkedNode> findAll(int _value) {
+    ArrayList<LInkedNode> nodes = new ArrayList<LInkedNode>();
     // здесь будет ваш код поиска всех узлов по заданному значению
     return findAllByValue(_value, head, nodes);
   }
 
-  private boolean removeNodeByValue(int value, Node node) {
+  private boolean removeNodeByValue(int value, LInkedNode node) {
     if (node == null) {
       return false;
     }
@@ -99,7 +99,7 @@ public class LinkedList2 {
 
   public void removeAll(int _value) {
     // здесь будет ваш код удаления всех узлов по заданному значению
-    ArrayList<Node> nodes = findAll(_value);
+    ArrayList<LInkedNode> nodes = findAll(_value);
 
     for (int i = 0; i < nodes.size(); i += 1) {
       remove(_value);
@@ -112,7 +112,7 @@ public class LinkedList2 {
     tail = null;
   }
 
-  private int getCount(Node node) {
+  private int getCount(LInkedNode node) {
     if (node == null) {
       return 0;
     }
@@ -124,7 +124,7 @@ public class LinkedList2 {
     return getCount(head); // здесь будет ваш код подсчёта количества элементов в списке
   }
 
-  private void insertAfterNode(Node currentNode, Node nodeAfter, Node nodeToInsert) {
+  private void insertAfterNode(LInkedNode currentNode, LInkedNode nodeAfter, LInkedNode nodeToInsert) {
     if (currentNode == null) {
       return;
     }
@@ -150,7 +150,7 @@ public class LinkedList2 {
     insertAfterNode(currentNode.next, nodeAfter, nodeToInsert);
   }
 
-  public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
+  public void insertAfter(LInkedNode _nodeAfter, LInkedNode _nodeToInsert) {
     // здесь будет ваш код вставки узла после заданного узла
 
     // если _nodeAfter = null
@@ -175,12 +175,12 @@ public class LinkedList2 {
   }
 }
 
-class Node {
+class LInkedNode {
   public int value;
-  public Node next;
-  public Node prev;
+  public LInkedNode next;
+  public LInkedNode prev;
 
-  public Node(int _value) {
+  public LInkedNode(int _value) {
     value = _value;
     next = null;
     prev = null;
