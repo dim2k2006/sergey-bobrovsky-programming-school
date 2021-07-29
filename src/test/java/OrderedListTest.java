@@ -17,4 +17,30 @@ public class OrderedListTest {
       Assertions.assertEquals(1, list.compare(2, 1));
     }
   }
+
+  @Nested
+  @DisplayName("add method")
+  class AddMethod {
+    @Test
+    @DisplayName("Should add node to the correct position asc")
+    void shouldAddNodeToTheCorrectPositionAsc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(true);
+
+      list.add(1);
+
+      Assertions.assertEquals(1, list.count());
+
+      list.add(2);
+
+      Assertions.assertEquals(2, list.count());
+
+      list.add(3);
+
+      Assertions.assertEquals(3, list.count());
+
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertEquals(2, list.head.next.value);
+      Assertions.assertEquals(3, list.head.next.next.value);
+    }
+  }
 }
