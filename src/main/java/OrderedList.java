@@ -62,10 +62,12 @@ public class OrderedList<T> {
     // в нужную позицию
     Node<T> node = new Node<T>(value);
 
-    if (count() == 0) {
+    int listLength = count();
+
+    if (listLength == 0) {
+      node.next = head;
       head = node;
-      head.next = tail;
-      tail.prev = head;
+      tail = node;
 
       return;
     }
