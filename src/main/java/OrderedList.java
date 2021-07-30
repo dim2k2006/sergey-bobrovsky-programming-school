@@ -25,9 +25,15 @@ public class OrderedList<T> {
     // -1 если v1 < v2
     // 0 если v1 == v2
     // +1 если v1 > v2
-    if (v1 < v2) return -1;
+    if (v1 instanceof Integer && v2 instanceof Integer) {
+      return Integer.compare((Integer) v1, (Integer) v2);
+    }
 
-    return Integer.compare(v1, v2);
+    if (v1 instanceof String && v2 instanceof String) {
+      return ((String) v1).compareTo((String) v2);
+    }
+
+    return 0;
   }
 
   private void addAfter(Node<T> currentNode, Node<T> nextNode, Node<T> nodeToInsert) {
@@ -39,7 +45,7 @@ public class OrderedList<T> {
       return;
     }
 
-    if (nextNode.value >= nodeToInsert.value) {
+    if (compare(nextNode.value, nodeToInsert.value) == 1) {
       currentNode.next = nodeToInsert;
       nodeToInsert.next = nextNode;
       nodeToInsert.prev = currentNode;
