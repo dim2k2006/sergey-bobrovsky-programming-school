@@ -162,6 +162,8 @@ public class OrderedList<T> {
   public void clear(boolean asc) {
     _ascending = asc;
     // здесь будет ваш код
+    head = null;
+    tail = null;
   }
 
   private int getCount(Node<T> node) {

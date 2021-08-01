@@ -201,4 +201,24 @@ public class OrderedListTest {
       Assertions.assertNull(list1.tail);
     }
   }
+
+  @Nested
+  @DisplayName("clear method")
+  class ClearMethod {
+    @Test
+    @DisplayName("Should clear not empty list")
+    void shouldClearList() {
+      OrderedList<Integer> list = new OrderedList<Integer>(true);
+
+      list.add(1);
+      list.add(2);
+      list.add(3);
+
+      list.clear(true);
+
+      Assertions.assertEquals(0, list.count());
+      Assertions.assertNull(list.head);
+      Assertions.assertNull(list.tail);
+    }
+  }
 }
