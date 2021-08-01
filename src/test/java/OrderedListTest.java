@@ -28,6 +28,40 @@ public class OrderedListTest {
   @DisplayName("add method")
   class AddMethod {
     @Test
+    @DisplayName("Should add nodes with same number values to the correct position asc")
+    void shouldAddNodesWithSameNumberValuesToTheCorrectPositionAsc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(true);
+
+      list.add(1);
+      list.add(3);
+      list.add(2);
+      list.add(2);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertEquals(2, list.head.next.value);
+      Assertions.assertEquals(2, list.head.next.next.value);
+      Assertions.assertEquals(3, list.head.next.next.next.value);
+    }
+
+    @Test
+    @DisplayName("Should add nodes with same number values to the correct position desc")
+    void shouldAddNodesWithSameNumberValuesToTheCorrectPositionDesc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(false);
+
+      list.add(1);
+      list.add(3);
+      list.add(2);
+      list.add(2);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertEquals(3, list.head.value);
+      Assertions.assertEquals(2, list.head.next.value);
+      Assertions.assertEquals(2, list.head.next.next.value);
+      Assertions.assertEquals(1, list.head.next.next.next.value);
+    }
+
+    @Test
     @DisplayName("Should add node with number value to the correct position asc")
     void shouldAddNodeToTheCorrectPositionAsc() {
       OrderedList<Integer> list = new OrderedList<Integer>(true);
