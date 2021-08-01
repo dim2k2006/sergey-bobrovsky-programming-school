@@ -28,7 +28,7 @@ public class OrderedListTest {
   @DisplayName("add method")
   class AddMethod {
     @Test
-    @DisplayName("Should add node to the correct position asc")
+    @DisplayName("Should add node with number value to the correct position asc")
     void shouldAddNodeToTheCorrectPositionAsc() {
       OrderedList<Integer> list = new OrderedList<Integer>(true);
 
@@ -76,7 +76,56 @@ public class OrderedListTest {
     }
 
     @Test
-    @DisplayName("Should add node to the correct position desc")
+    @DisplayName("Should add node with string value to the correct position asc")
+    void shouldAddNodeWithStringValueToTheCorrectPositionAsc() {
+      OrderedList<String> list = new OrderedList<String>(true);
+
+      list.add("a");
+
+      Assertions.assertEquals(1, list.count());
+      Assertions.assertEquals("a", list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertNull(list.head.next);
+      Assertions.assertEquals("a", list.tail.value);
+      Assertions.assertNull(list.tail.prev);
+      Assertions.assertNull(list.tail.next);
+
+      list.add("b");
+
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals("a", list.head.value);
+      Assertions.assertEquals("b", list.head.next.value);
+      Assertions.assertEquals("b", list.tail.value);
+      Assertions.assertEquals("a", list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add("e");
+
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals("a", list.head.value);
+      Assertions.assertEquals("b", list.head.next.value);
+      Assertions.assertEquals("e", list.head.next.next.value);
+      Assertions.assertEquals("e", list.tail.value);
+      Assertions.assertEquals("b", list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add("d");
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals("a", list.head.value);
+      Assertions.assertEquals("b", list.head.next.value);
+      Assertions.assertEquals("d", list.head.next.next.value);
+      Assertions.assertEquals("e", list.head.next.next.next.value);
+      Assertions.assertEquals("e", list.tail.value);
+      Assertions.assertEquals("d", list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should add node with number value to the correct position desc")
     void shouldAddNodeToTheCorrectPositionDesc() {
       OrderedList<Integer> list = new OrderedList<Integer>(false);
 
@@ -127,6 +176,55 @@ public class OrderedListTest {
       Assertions.assertEquals(5, list.head.next.value);
       Assertions.assertEquals(1, list.tail.value);
       Assertions.assertEquals(2, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should add node with string value to the correct position desc")
+    void shouldAddNodeWithStringValueToTheCorrectPositionDesc() {
+      OrderedList<String> list = new OrderedList<String>(false);
+
+      list.add("a");
+
+      Assertions.assertEquals(1, list.count());
+      Assertions.assertEquals("a", list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertNull(list.head.next);
+      Assertions.assertEquals("a", list.tail.value);
+      Assertions.assertNull(list.tail.prev);
+      Assertions.assertNull(list.tail.next);
+
+      list.add("b");
+
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals("b", list.head.value);
+      Assertions.assertEquals("a", list.head.next.value);
+      Assertions.assertEquals("a", list.tail.value);
+      Assertions.assertEquals("b", list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add("e");
+
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals("e", list.head.value);
+      Assertions.assertEquals("b", list.head.next.value);
+      Assertions.assertEquals("a", list.head.next.next.value);
+      Assertions.assertEquals("a", list.tail.value);
+      Assertions.assertEquals("b", list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add("d");
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals("e", list.head.value);
+      Assertions.assertEquals("d", list.head.next.value);
+      Assertions.assertEquals("b", list.head.next.next.value);
+      Assertions.assertEquals("a", list.head.next.next.next.value);
+      Assertions.assertEquals("a", list.tail.value);
+      Assertions.assertEquals("b", list.tail.prev.value);
       Assertions.assertNull(list.tail.next);
     }
   }
