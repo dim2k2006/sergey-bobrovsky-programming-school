@@ -21,6 +21,10 @@ public class OrderedListTest {
       Assertions.assertEquals(-1, list2.compare("Adam", "Bill"));
       Assertions.assertEquals(0, list2.compare("Adam", "Adam"));
       Assertions.assertEquals(1, list2.compare("Bill", "Adam"));
+
+      Assertions.assertEquals(-1, list2.compare("Adam", " Bill "));
+      Assertions.assertEquals(0, list2.compare(" Adam ", "Adam"));
+      Assertions.assertEquals(1, list2.compare(" Bill ", " Adam    "));
     }
   }
 

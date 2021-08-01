@@ -30,7 +30,10 @@ public class OrderedList<T> {
     }
 
     if (v1 instanceof String && v2 instanceof String) {
-      return ((String) v1).compareTo((String) v2);
+      String value1 = ((String) v1).trim();
+      String value2 = ((String) v2).trim();
+
+      return value1.compareTo(value2);
     }
 
     return 0;
