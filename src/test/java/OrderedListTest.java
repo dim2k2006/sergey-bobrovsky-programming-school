@@ -162,4 +162,43 @@ public class OrderedListTest {
       Assertions.assertNull(list2.find(10));
     }
   }
+
+  @Nested
+  @DisplayName("delete method")
+  class DeleteMethod {
+    @Test
+    @DisplayName("Should delete node by value")
+    void shouldDeleteNodeByValue() {
+      OrderedList<Integer> list1 = new OrderedList<Integer>(true);
+
+      list1.add(5);
+      list1.add(3);
+      list1.add(6);
+      list1.add(8);
+
+      Assertions.assertEquals(4, list1.count());
+
+      list1.delete(3);
+
+      Assertions.assertEquals(3, list1.count());
+      Assertions.assertEquals(5, list1.head.value);
+
+      list1.delete(5);
+
+      Assertions.assertEquals(2, list1.count());
+      Assertions.assertEquals(6, list1.head.value);
+
+      list1.delete(6);
+
+      Assertions.assertEquals(1, list1.count());
+      Assertions.assertEquals(8, list1.head.value);
+      Assertions.assertEquals(8, list1.tail.value);
+
+      list1.delete(8);
+
+      Assertions.assertEquals(0, list1.count());
+      Assertions.assertNull(list1.head);
+      Assertions.assertNull(list1.tail);
+    }
+  }
 }

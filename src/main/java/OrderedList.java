@@ -118,8 +118,45 @@ public class OrderedList<T> {
     return finByValue(head, val);
   }
 
+  private void deleteByValue(Node<T> node, T value) {
+    if (node == null) {
+      return;
+    }
+
+    if (node == head && node == tail && node.value == value) {
+      head = null;
+      tail = null;
+
+      return;
+    }
+
+    if (node == head && node.value == value) {
+      node.next.prev = null;
+      head = node.next;
+
+      return;
+    }
+
+    if (node == tail && node.value == value) {
+      tail = node.prev;
+      node.prev.next = null;
+
+      return;
+    }
+
+    if (node.value == value) {
+      node.prev.next = node.next;
+      node.next.prev = node.prev;
+
+      return;
+    }
+
+    deleteByValue(node.next, value);
+  }
+
   public void delete(T val) {
     // здесь будет ваш код
+    deleteByValue(head, val);
   }
 
   public void clear(boolean asc) {
