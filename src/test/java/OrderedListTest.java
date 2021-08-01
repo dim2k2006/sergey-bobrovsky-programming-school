@@ -74,5 +74,60 @@ public class OrderedListTest {
       Assertions.assertEquals(5, list.tail.prev.value);
       Assertions.assertNull(list.tail.next);
     }
+
+    @Test
+    @DisplayName("Should add node to the correct position desc")
+    void shouldAddNodeToTheCorrectPositionDesc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(false);
+
+      list.add(1);
+
+      Assertions.assertEquals(1, list.count());
+      Assertions.assertEquals(1, list.head.value);
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertNull(list.head.next);
+      Assertions.assertEquals(1, list.tail.value);
+      Assertions.assertNull(list.tail.prev);
+      Assertions.assertNull(list.tail.next);
+
+      list.add(2);
+
+      Assertions.assertEquals(2, list.count());
+      Assertions.assertEquals(2, list.head.value);
+      Assertions.assertEquals(1, list.head.next.value);
+      Assertions.assertEquals(1, list.tail.value);
+      Assertions.assertEquals(2, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add(6);
+
+      Assertions.assertEquals(3, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(6, list.head.value);
+      Assertions.assertEquals(2, list.head.next.value);
+      Assertions.assertEquals(1, list.tail.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add(4);
+
+      Assertions.assertEquals(4, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(6, list.head.value);
+      Assertions.assertEquals(4, list.head.next.value);
+      Assertions.assertEquals(2, list.head.next.next.value);
+      Assertions.assertEquals(1, list.head.next.next.next.value);
+      Assertions.assertEquals(1, list.tail.value);
+      Assertions.assertNull(list.tail.next);
+
+      list.add(5);
+
+      Assertions.assertEquals(5, list.count());
+      Assertions.assertNull(list.head.prev);
+      Assertions.assertEquals(6, list.head.value);
+      Assertions.assertEquals(5, list.head.next.value);
+      Assertions.assertEquals(1, list.tail.value);
+      Assertions.assertEquals(2, list.tail.prev.value);
+      Assertions.assertNull(list.tail.next);
+    }
   }
 }
