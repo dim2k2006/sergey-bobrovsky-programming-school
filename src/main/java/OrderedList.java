@@ -102,8 +102,20 @@ public class OrderedList<T> {
     addAfterDesc(tail, tail.prev, node);
   }
 
+  private Node<T> finByValue(Node<T> currentNode, T val) {
+    if (currentNode == null) {
+      return null;
+    }
+
+    if (currentNode.value == val) {
+      return currentNode;
+    }
+
+    return finByValue(currentNode.next, val);
+  }
+
   public Node<T> find(T val) {
-    return null; // здесь будет ваш код
+    return finByValue(head, val);
   }
 
   public void delete(T val) {

@@ -130,4 +130,36 @@ public class OrderedListTest {
       Assertions.assertNull(list.tail.next);
     }
   }
+
+  @Nested
+  @DisplayName("find method")
+  class FindMethod {
+    @Test
+    @DisplayName("Should find node by value")
+    void shouldFindValue() {
+      OrderedList<Integer> list1 = new OrderedList<Integer>(true);
+
+      list1.add(5);
+      list1.add(3);
+      list1.add(6);
+      list1.add(8);
+
+      Assertions.assertEquals(5, list1.find(5).value);
+      Assertions.assertEquals(6, list1.find(6).value);
+      Assertions.assertEquals(8, list1.find(8).value);
+      Assertions.assertNull(list1.find(10));
+
+      OrderedList<Integer> list2 = new OrderedList<Integer>(false);
+
+      list2.add(5);
+      list2.add(3);
+      list2.add(6);
+      list2.add(8);
+
+      Assertions.assertEquals(5, list2.find(5).value);
+      Assertions.assertEquals(6, list2.find(6).value);
+      Assertions.assertEquals(8, list2.find(8).value);
+      Assertions.assertNull(list2.find(10));
+    }
+  }
 }
