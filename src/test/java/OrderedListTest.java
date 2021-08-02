@@ -59,6 +59,31 @@ public class OrderedListTest {
     }
 
     @Test
+    @DisplayName("Should create ordered list desc")
+    void shouldCreateOrderedListDesc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(false);
+
+      int upperBound = 100;
+
+      for (int i = 1; i <= 100; i++) {
+        list.add(i);
+      }
+
+      Assertions.assertEquals(upperBound, list.count());
+
+      ArrayList<Node<Integer>> array = list.getAll();
+
+      int arrayLength = array.size();
+
+      for (int i = 0; i < arrayLength - 1; i++) {
+        Node<Integer> currentNode = array.get(i);
+        Node<Integer> nextNode = array.get(i + 1);
+
+        Assertions.assertTrue(currentNode.value > nextNode.value);
+      }
+    }
+
+    @Test
     @DisplayName("Should add nodes with same number values to the correct position asc")
     void shouldAddNodesWithSameNumberValuesToTheCorrectPositionAsc() {
       OrderedList<Integer> list = new OrderedList<Integer>(true);
