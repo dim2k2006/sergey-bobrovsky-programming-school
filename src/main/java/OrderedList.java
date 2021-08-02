@@ -39,7 +39,7 @@ public class OrderedList<T> {
     return 0;
   }
 
-  private void addAfterAsc(Node<T> currentNode, Node<T> nextNode, Node<T> nodeToInsert) {
+  private void addAsc(Node<T> currentNode, Node<T> nextNode, Node<T> nodeToInsert) {
     if (nextNode == null) {
       currentNode.next = nodeToInsert;
       tail = nodeToInsert;
@@ -57,10 +57,10 @@ public class OrderedList<T> {
       return;
     }
 
-    addAfterAsc(currentNode.next, nextNode.next, nodeToInsert);
+    addAsc(currentNode.next, nextNode.next, nodeToInsert);
   }
 
-  private void addAfterDesc(Node<T> currentNode, Node<T> prevNode, Node<T> nodeToInsert) {
+  private void addDesc(Node<T> currentNode, Node<T> prevNode, Node<T> nodeToInsert) {
     if (prevNode == null) {
       currentNode.prev = nodeToInsert;
       head = nodeToInsert;
@@ -78,7 +78,7 @@ public class OrderedList<T> {
       return;
     }
 
-    addAfterDesc(currentNode.prev, prevNode.prev, nodeToInsert);
+    addDesc(currentNode.prev, prevNode.prev, nodeToInsert);
   }
 
   public void add(T value) {
@@ -97,12 +97,19 @@ public class OrderedList<T> {
     }
 
     if (_ascending) {
-      addAfterAsc(head, head.next, node);
+      if (compare(node.value, head.value) == -1) {
+        node.next = head;
+        head = node;
+
+        return;
+      }
+
+      addAsc(head, head.next, node);
 
       return;
     }
 
-    addAfterDesc(tail, tail.prev, node);
+    addDesc(tail, tail.prev, node);
   }
 
   private Node<T> finByValue(Node<T> currentNode, T val) {

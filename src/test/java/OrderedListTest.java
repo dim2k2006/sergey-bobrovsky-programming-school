@@ -3,6 +3,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class OrderedListTest {
   @Nested
   @DisplayName("compare method")
@@ -31,6 +33,31 @@ public class OrderedListTest {
   @Nested
   @DisplayName("add method")
   class AddMethod {
+    @Test
+    @DisplayName("Should create ordered list asc")
+    void shouldCreateOrderedListAsc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(true);
+
+      int upperBound = 100;
+
+      for (int i = upperBound; i > 0; i--) {
+        list.add(i);
+      }
+
+      Assertions.assertEquals(upperBound, list.count());
+
+      ArrayList<Node<Integer>> array = list.getAll();
+
+      int arrayLength = array.size();
+
+      for (int i = 0; i < arrayLength - 1; i++) {
+        Node<Integer> currentNode = array.get(i);
+        Node<Integer> nextNode = array.get(i + 1);
+
+        Assertions.assertTrue(currentNode.value < nextNode.value);
+      }
+    }
+
     @Test
     @DisplayName("Should add nodes with same number values to the correct position asc")
     void shouldAddNodesWithSameNumberValuesToTheCorrectPositionAsc() {
