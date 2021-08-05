@@ -48,7 +48,9 @@ public class OrderedList<T> {
       return;
     }
 
-    if (compare(nextNode.value, nodeToInsert.value) == 1) {
+    int comparisonResult = compare(nextNode.value, nodeToInsert.value);
+
+    if (comparisonResult == 1 || comparisonResult == 0) {
       currentNode.next = nodeToInsert;
       nodeToInsert.next = nextNode;
       nodeToInsert.prev = currentNode;
@@ -69,7 +71,9 @@ public class OrderedList<T> {
       return;
     }
 
-    if (compare(prevNode.value, nodeToInsert.value) == 1) {
+    int comparisonResult = compare(prevNode.value, nodeToInsert.value);
+
+    if (comparisonResult == 1 || comparisonResult == 0) {
       currentNode.prev = nodeToInsert;
       nodeToInsert.prev = prevNode;
       nodeToInsert.next = currentNode;
