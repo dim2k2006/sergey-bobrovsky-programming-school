@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class OrderedListTest {
+  public String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+
   @Nested
   @DisplayName("compare method")
   class CompareMethod {
@@ -34,8 +36,8 @@ public class OrderedListTest {
   @DisplayName("add method")
   class AddMethod {
     @Test
-    @DisplayName("Should create ordered list asc")
-    void shouldCreateOrderedListAsc() {
+    @DisplayName("Should create ordered numeric list asc")
+    void shouldCreateOrderedNumericListAsc() {
       OrderedList<Integer> list = new OrderedList<Integer>(true);
 
       int upperBound = 100;
@@ -59,8 +61,8 @@ public class OrderedListTest {
     }
 
     @Test
-    @DisplayName("Should create ordered list desc")
-    void shouldCreateOrderedListDesc() {
+    @DisplayName("Should create ordered numeric list desc")
+    void shouldCreateOrderedNumericListDesc() {
       OrderedList<Integer> list = new OrderedList<Integer>(false);
 
       int upperBound = 100;
@@ -80,6 +82,56 @@ public class OrderedListTest {
         Node<Integer> nextNode = array.get(i + 1);
 
         Assertions.assertTrue(currentNode.value > nextNode.value);
+      }
+    }
+
+    @Test
+    @DisplayName("Should create ordered character list asc")
+    void shouldCreateOrderedCharacterListAsc() {
+      OrderedList<String> list = new OrderedList<String>(true);
+
+      int upperBound = alphabet.length;
+
+      for (int i = upperBound - 1; i >= 0; i--) {
+        list.add(alphabet[i]);
+      }
+
+      Assertions.assertEquals(upperBound, list.count());
+
+      ArrayList<Node<String>> array = list.getAll();
+
+      int arrayLength = array.size();
+
+      for (int i = 0; i < arrayLength - 1; i++) {
+        Node<String> currentNode = array.get(i);
+        Node<String> nextNode = array.get(i + 1);
+
+        Assertions.assertEquals(-1, list.compare(currentNode.value, nextNode.value));
+      }
+    }
+
+    @Test
+    @DisplayName("Should create ordered character list desc")
+    void shouldCreateOrderedCharacterListDesc() {
+      OrderedList<String> list = new OrderedList<String>(false);
+
+      int upperBound = alphabet.length;;
+
+      for (int i = 0; i < upperBound; i++) {
+        list.add(alphabet[i]);
+      }
+
+      Assertions.assertEquals(upperBound, list.count());
+
+      ArrayList<Node<String>> array = list.getAll();
+
+      int arrayLength = array.size();
+
+      for (int i = 0; i < arrayLength - 1; i++) {
+        Node<String> currentNode = array.get(i);
+        Node<String> nextNode = array.get(i + 1);
+
+        Assertions.assertEquals(1, list.compare(currentNode.value, nextNode.value));
       }
     }
 
