@@ -102,6 +102,7 @@ public class OrderedList<T> {
 
     if (_ascending) {
       if (compare(node.value, head.value) == -1) {
+        head.prev = node;
         node.next = head;
         head = node;
 

@@ -8,6 +8,14 @@ import java.util.ArrayList;
 public class OrderedListTest {
   public String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
+  public int getListLength(Node node) {
+    if (node == null) {
+      return 0;
+    }
+
+    return 1 + getListLength(node.prev);
+  }
+
   @Nested
   @DisplayName("compare method")
   class CompareMethod {
@@ -58,6 +66,8 @@ public class OrderedListTest {
 
         Assertions.assertTrue(currentNode.value < nextNode.value);
       }
+
+      Assertions.assertEquals(100, getListLength(list.tail));
     }
 
     @Test
@@ -83,6 +93,8 @@ public class OrderedListTest {
 
         Assertions.assertTrue(currentNode.value > nextNode.value);
       }
+
+      Assertions.assertEquals(100, getListLength(list.tail));
     }
 
     @Test
@@ -108,6 +120,8 @@ public class OrderedListTest {
 
         Assertions.assertEquals(-1, list.compare(currentNode.value, nextNode.value));
       }
+
+      Assertions.assertEquals(26, getListLength(list.tail));
     }
 
     @Test
@@ -133,6 +147,8 @@ public class OrderedListTest {
 
         Assertions.assertEquals(1, list.compare(currentNode.value, nextNode.value));
       }
+
+      Assertions.assertEquals(26, getListLength(list.tail));
     }
 
     @Test
