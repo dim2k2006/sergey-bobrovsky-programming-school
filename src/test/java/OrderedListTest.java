@@ -8,12 +8,14 @@ import java.util.ArrayList;
 public class OrderedListTest {
   public String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
-  public int getListLength(Node node) {
+  public int getListLength(Node node, Boolean inverse) {
     if (node == null) {
       return 0;
     }
 
-    return 1 + getListLength(node.prev);
+    Node nextNode = inverse ? node.prev : node.next;
+
+    return 1 + getListLength(nextNode, inverse);
   }
 
   @Nested
@@ -67,7 +69,7 @@ public class OrderedListTest {
         Assertions.assertTrue(currentNode.value < nextNode.value);
       }
 
-      Assertions.assertEquals(100, getListLength(list.tail));
+      Assertions.assertEquals(100, getListLength(list.tail, true));
     }
 
     @Test
@@ -94,7 +96,8 @@ public class OrderedListTest {
         Assertions.assertTrue(currentNode.value > nextNode.value);
       }
 
-      Assertions.assertEquals(100, getListLength(list.tail));
+      Assertions.assertEquals(100, getListLength(list.head, false));
+      Assertions.assertEquals(100, getListLength(list.tail, true));
     }
 
     @Test
@@ -121,7 +124,7 @@ public class OrderedListTest {
         Assertions.assertEquals(-1, list.compare(currentNode.value, nextNode.value));
       }
 
-      Assertions.assertEquals(26, getListLength(list.tail));
+      Assertions.assertEquals(26, getListLength(list.tail, true));
     }
 
     @Test
@@ -148,7 +151,7 @@ public class OrderedListTest {
         Assertions.assertEquals(1, list.compare(currentNode.value, nextNode.value));
       }
 
-      Assertions.assertEquals(26, getListLength(list.tail));
+      Assertions.assertEquals(26, getListLength(list.tail, true));
     }
 
     @Test
@@ -384,6 +387,35 @@ public class OrderedListTest {
       Assertions.assertEquals("a", list.tail.value);
       Assertions.assertEquals("b", list.tail.prev.value);
       Assertions.assertNull(list.tail.next);
+    }
+
+    @Test
+    @DisplayName("Should create correct list desc")
+    void shouldCreateCorrectListDesc() {
+      OrderedList<Integer> list = new OrderedList<Integer>(false);
+
+      list.add(4);
+
+      list.add(3);
+      list.add(2);
+      list.add(1);
+
+      list.add(7);
+      list.add(6);
+      list.add(5);
+
+      ArrayList<Node<Integer>> array = list.getAll();
+
+      int arrayLength = array.size();
+
+      Assertions.assertEquals(7, arrayLength);
+
+      for (int i = 0; i < arrayLength - 1; i++) {
+        Node<Integer> currentNode = array.get(i);
+        Node<Integer> nextNode = array.get(i + 1);
+
+        Assertions.assertEquals(1, list.compare(currentNode.value, nextNode.value));
+      }
     }
   }
 

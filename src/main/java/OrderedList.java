@@ -114,6 +114,14 @@ public class OrderedList<T> {
       return;
     }
 
+    if (compare(node.value, tail.value) == -1) {
+      tail.next = node;
+      node.prev = tail;
+      tail = node;
+
+      return;
+    }
+
     addDesc(tail, tail.prev, node);
   }
 
