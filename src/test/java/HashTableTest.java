@@ -61,4 +61,43 @@ public class HashTableTest {
       Assertions.assertEquals(-1, slot);
     }
   }
+
+  @Nested
+  @DisplayName("find method")
+  class Find {
+    @Test
+    @DisplayName("Should find value")
+    void shouldFindValue() {
+      Faker faker = new Faker();
+      HashTable table = new HashTable(19, 3);
+
+      String value = faker.lorem().word();
+
+      int putSlot = table.put(value);
+
+      Assertions.assertNotEquals(-1, putSlot);
+
+      int findSlot = table.find(value);
+
+      Assertions.assertEquals(putSlot, findSlot);
+    }
+
+    @Test
+    @DisplayName("Should not find value")
+    void shouldNotFindValue() {
+      Faker faker = new Faker();
+      HashTable table = new HashTable(19, 3);
+
+      String value1 = faker.lorem().word();
+      String value2 = faker.lorem().word();
+
+      int putSlot = table.put(value1);
+
+      Assertions.assertNotEquals(-1, putSlot);
+
+      int findSlot = table.find(value2);
+
+      Assertions.assertEquals(-1, findSlot);
+    }
+  }
 }

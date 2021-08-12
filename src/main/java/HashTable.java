@@ -104,9 +104,35 @@ public class HashTable
          return slotIndex;
      }
 
+     private int findByValue(int slotIndex, int[] visitedSlots, String value) {
+      if (visitedSlots.length == slots.length) {
+        return -1;
+      }
+
+      if (contains(visitedSlots, slotIndex)) {
+        return findByValue(slotIndex + 1, visitedSlots, value);
+      }
+
+      if (slotIndex > slots.length - 1) {
+        return findByValue(slotIndex - slots.length, visitedSlots, value);
+      }
+
+      String slotValue = slots[slotIndex];
+
+      if (slotValue == null) {
+        return findByValue(slotIndex + step, append(visitedSlots, slotIndex), value);
+      }
+
+      if (slotValue.equals(value)) {
+        return slotIndex;
+      }
+
+      return findByValue(slotIndex + step, append(visitedSlots, slotIndex), value);
+     }
+
      public int find(String value)
      {
-         // находит индекс слота со значением, или -1
-         return -1;
+        // находит индекс слота со значением, или -1
+        return findByValue(0, new int[0], value);
      }
   }
