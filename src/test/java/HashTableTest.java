@@ -17,4 +17,48 @@ public class HashTableTest {
       Assertions.assertEquals(table.hashFun("hello world!"), table.hashFun("hello world!"));
     }
   }
+
+  @Nested
+  @DisplayName("put method")
+  class Put {
+    @Test
+    @DisplayName("Should put value into slot")
+    void shouldPutValueIntoSlot() {
+      HashTable table = new HashTable(19, 3);
+
+      int slot = table.put("hello world!");
+
+      Assertions.assertNotEquals(-1, slot);
+    }
+
+    @Test
+    @DisplayName("Should find another slot if the original slot is ocupied")
+    void shouldFindAnotherSlotIfTheOriginalSlotIsOcupied() {
+      HashTable table = new HashTable(19, 3);
+
+      int slot1 = table.put("hello world!");
+      int slot2 = table.put("hello world!");
+
+      Assertions.assertNotEquals(-1, slot1);
+      Assertions.assertNotEquals(-1, slot2);
+      Assertions.assertNotEquals(slot1, slot2);
+    }
+
+    @Test
+    @DisplayName("Should return -1 if there is no empty slot")
+    void shouldReturnIfThereIsNoEmptySlot() {
+      HashTable table = new HashTable(3, 3);
+
+      int slot1 = table.put("hello world!");
+      int slot2 = table.put("hello world!");
+      int slot3 = table.put("hello world!");
+
+      int slot = table.put("hello world!");
+
+      Assertions.assertNotEquals(-1, slot1);
+      Assertions.assertNotEquals(-1, slot2);
+      Assertions.assertNotEquals(-1, slot3);
+      Assertions.assertEquals(-1, slot);
+    }
+  }
 }
