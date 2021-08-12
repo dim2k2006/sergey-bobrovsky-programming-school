@@ -3,6 +3,7 @@ public class HashTable
     public int size;
     public int step;
     public String [] slots;
+    public int p = 239017;
 
     public HashTable(int sz, int stp)
     {
@@ -15,19 +16,20 @@ public class HashTable
     public int hashFun(String value)
     {
         // всегда возвращает корректный индекс слота
-        int p = 239017;
         int hash = 0;
 
-        for (int i = 0; i < value.length(); i += 1) {
-          if (i == 0) {
-            hash = hash + (int) value.charAt(i);
+        for (int n = 0; n < value.length(); n += 1) {
+          int charCode = value.charAt(n);
+
+          if (n == 0) {
+            hash = hash + charCode;
 
             continue;
           }
 
-          int exp = i == 1 ? 1 : i - 1;
+          int multiplicationResult = (int) ((double) charCode * Math.pow(p, n));
 
-          hash = hash + (int) ((double) value.charAt(i) * Math.pow(p, exp));
+          hash = Math.abs(hash + multiplicationResult);
         }
 
         int result = hash % size;
