@@ -41,4 +41,33 @@ public class NativeDictionaryTest {
       Assertions.assertEquals(value2, dictionary.get(key));
     }
   }
+
+  @Nested
+  @DisplayName("get method")
+  class GetMethod {
+    @Test
+    @DisplayName("Should get value from dictionary")
+    void shouldGetValueFromDictionary() {
+      NativeDictionary<Integer> dictionary = new NativeDictionary<Integer>(20, Integer.class);
+      Faker faker = new Faker();
+
+      String key = faker.lorem().word();
+      int value = (int) faker.number().numberBetween(0, 100);
+
+      dictionary.put(key, value);
+
+      Assertions.assertEquals(value, dictionary.get(key));
+    }
+
+    @Test
+    @DisplayName("Should return null")
+    void shouldReturnNull() {
+      NativeDictionary<Integer> dictionary = new NativeDictionary<Integer>(20, Integer.class);
+      Faker faker = new Faker();
+
+      String key = faker.lorem().word();
+
+      Assertions.assertNull(dictionary.get(key));
+    }
+  }
 }
