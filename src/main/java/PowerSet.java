@@ -149,9 +149,9 @@ public class PowerSet {
   public void put(String value) {
     // всегда срабатывает
     // записываем значение по хэш-функции
-    int index = find(value);
+    boolean isValueExists = get(value);
 
-    if (index != -1) return;
+    if (isValueExists) return;
 
     int slotIndex = seekSlot(value);
 
@@ -159,15 +159,27 @@ public class PowerSet {
   }
 
   public boolean get(String value) {
-      // возвращает true если value имеется в множестве,
-      // иначе false
-      return false;
+    // возвращает true если value имеется в множестве,
+    // иначе false
+    int index = find(value);
+
+    if (index != -1) return true;
+
+    return false;
   }
 
   public boolean remove(String value) {
-      // возвращает true если value удалено
-      // иначе false
-      return false;
+    // возвращает true если value удалено
+    // иначе false
+    boolean isValueExists = get(value);
+
+    if (!isValueExists) return false;
+
+    int slotIndex = find(value);
+
+    slots[slotIndex] = null;
+
+    return true;
   }
 
   public PowerSet intersection(PowerSet set2) {
