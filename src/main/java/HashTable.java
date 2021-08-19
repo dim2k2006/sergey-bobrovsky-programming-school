@@ -104,34 +104,41 @@ public class HashTable {
     return slotIndex;
   }
 
-  private int findByValue(int slotIndex, int[] visitedSlots, String value) {
-    if (visitedSlots.length == slots.length) {
-      return -1;
-    }
-
-    if (contains(visitedSlots, slotIndex)) {
-      return findByValue(slotIndex + 1, visitedSlots, value);
-    }
-
-    if (slotIndex > slots.length - 1) {
-      return findByValue(slotIndex - slots.length, visitedSlots, value);
-    }
-
-    String slotValue = slots[slotIndex];
-
-    if (slotValue == null) {
-      return findByValue(slotIndex + step, append(visitedSlots, slotIndex), value);
-    }
-
-    if (slotValue.equals(value)) {
-      return slotIndex;
-    }
-
-    return findByValue(slotIndex + step, append(visitedSlots, slotIndex), value);
-  }
-
   public int find(String value) {
     // находит индекс слота со значением, или -1
-    return findByValue(0, new int[0], value);
+    int slotIndex = 0;
+    int[] visitedSlots = new int[0];
+
+    while (visitedSlots.length != slots.length) {
+      if (contains(visitedSlots, slotIndex)) {
+        slotIndex = slotIndex + 1;
+
+        continue;
+      }
+
+      if (slotIndex > slots.length - 1) {
+        slotIndex = slotIndex - slots.length;
+
+        continue;
+      }
+
+      String slotValue = slots[slotIndex];
+
+      if (slotValue == null) {
+        visitedSlots = append(visitedSlots, slotIndex);
+        slotIndex = slotIndex + step;
+
+        continue;
+      }
+
+      if (slotValue.equals(value)) {
+        return slotIndex;
+      }
+
+      visitedSlots = append(visitedSlots, slotIndex);
+      slotIndex = slotIndex + step;
+    }
+
+    return -1;
   }
 }
