@@ -1,13 +1,15 @@
+import java.util.*;
+
 public class PowerSet {
-  public int size = 5000;
+  public int slotsSize = 20000;
   public int step = 3;
   public String [] slots;
   public int p = 239017;
 
   public PowerSet() {
     // ваша реализация хранилища
-    slots = new String[size];
-    for(int i=0; i<size; i++) slots[i] = null;
+    slots = new String[slotsSize];
+    for(int i=0; i<slotsSize; i++) slots[i] = null;
   }
 
   public int hashFun(String value) {
@@ -28,30 +30,9 @@ public class PowerSet {
       hash = Math.abs(hash + multiplicationResult);
     }
 
-    int result = hash % size;
+    int result = hash % slotsSize;
 
     return result;
-  }
-
-  public static boolean contains(final int[] array, final int v) {
-    for (final int e : array)
-      if (e == v) return true;
-
-    return false;
-  }
-
-  public static int[] append(int[] array, int value) {
-    int[] newArray = new int[array.length + 1];
-
-    for (int i = 0; i < array.length; i++) {
-      int val = array[i];
-
-      newArray[i] = val;
-    }
-
-    newArray[newArray.length - 1] = value;
-
-    return newArray;
   }
 
   public int seekSlot(String value) {
@@ -63,10 +44,10 @@ public class PowerSet {
     }
 
     int slotIndex = hash + step;
-    int[] visitedSlots = new int[]{ hash };
+    Hashtable<Integer, Boolean> visitedSlots = new Hashtable<Integer, Boolean>();
 
-    while (visitedSlots.length != slots.length) {
-      if (contains(visitedSlots, slotIndex)) {
+    while (visitedSlots.size() != slots.length) {
+      if (visitedSlots.containsKey(slotIndex)) {
         slotIndex = slotIndex + 1;
 
         continue;
@@ -84,7 +65,7 @@ public class PowerSet {
         return slotIndex;
       }
 
-      visitedSlots = append(visitedSlots, slotIndex);
+      visitedSlots.put(slotIndex, true);
 
       slotIndex = slotIndex + step;
     }
@@ -95,10 +76,10 @@ public class PowerSet {
   public int find(String value) {
     // находит индекс слота со значением, или -1
     int slotIndex = 0;
-    int[] visitedSlots = new int[0];
+    Hashtable<Integer, Boolean> visitedSlots = new Hashtable<Integer, Boolean>();
 
-    while (visitedSlots.length != slots.length) {
-      if (contains(visitedSlots, slotIndex)) {
+    while (visitedSlots.size() != slots.length) {
+      if (visitedSlots.containsKey(slotIndex)) {
         slotIndex = slotIndex + 1;
 
         continue;
@@ -113,7 +94,7 @@ public class PowerSet {
       String slotValue = slots[slotIndex];
 
       if (slotValue == null) {
-        visitedSlots = append(visitedSlots, slotIndex);
+        visitedSlots.put(slotIndex, true);
         slotIndex = slotIndex + step;
 
         continue;
@@ -123,7 +104,7 @@ public class PowerSet {
         return slotIndex;
       }
 
-      visitedSlots = append(visitedSlots, slotIndex);
+      visitedSlots.put(slotIndex, true);
       slotIndex = slotIndex + step;
     }
 
@@ -149,9 +130,9 @@ public class PowerSet {
   public void put(String value) {
     // всегда срабатывает
     // записываем значение по хэш-функции
-    boolean isValueExists = get(value);
+    int index = find(value);
 
-    if (isValueExists) return;
+    if (index != -1) return;
 
     int slotIndex = seekSlot(value);
 
@@ -182,9 +163,25 @@ public class PowerSet {
     return true;
   }
 
+  public String getByIndex(int index) {
+    return slots[index];
+  }
+
   public PowerSet intersection(PowerSet set2) {
-      // пересечение текущего множества и set2
-      return null;
+    // пересечение текущего множества и set2
+    PowerSet result = new PowerSet();
+
+    for (int i = 0; i < slotsSize; i++) {
+      String value = this.getByIndex(i);
+
+      if (value == null) continue;
+
+      if (this.get(value) && set2.get(value)) {
+        result.put(value);
+      }
+    }
+
+    return result;
   }
 
   public PowerSet union(PowerSet set2) {
