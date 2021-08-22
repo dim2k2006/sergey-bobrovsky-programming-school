@@ -197,9 +197,131 @@ public class PowerSetTest {
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
 
-      PowerSet unionSet = set1.intersection(set2);
+      PowerSet set3 = set1.intersection(set2);
 
-      Assertions.assertEquals(0, unionSet.size());
+      Assertions.assertEquals(0, set3.size());
+    }
+  }
+
+  @Nested
+  @DisplayName("union method")
+  class UnionMethod {
+    @Test
+    @DisplayName("Should unite sets")
+    void shouldUniteSets() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words1 = faker.lorem().words(randomBound);
+      List<String> words2 = faker.lorem().words(randomBound);
+
+      words1.forEach(value -> {
+        set1.put(value);
+      });
+
+      words2.forEach(value -> {
+        set2.put(value);
+      });
+
+      PowerSet set3 = set1.union(set2);
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set1.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertTrue(set3.get(value));
+      }
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set2.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertTrue(set3.get(value));
+      }
+    }
+
+    @Test
+    @DisplayName("Should unite sets where first set is empty")
+    void shouldUniteSetsWhereFirstSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words2 = faker.lorem().words(randomBound);
+
+      words2.forEach(value -> {
+        set2.put(value);
+      });
+
+      PowerSet set3 = set1.union(set2);
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set1.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertTrue(set3.get(value));
+      }
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set2.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertTrue(set3.get(value));
+      }
+    }
+
+    @Test
+    @DisplayName("Should unite sets where second set is empty")
+    void shouldUniteSetsWhereSecondSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words1 = faker.lorem().words(randomBound);
+
+      words1.forEach(value -> {
+        set1.put(value);
+      });
+
+      PowerSet set3 = set1.union(set2);
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set1.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertTrue(set3.get(value));
+      }
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set2.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertTrue(set3.get(value));
+      }
+    }
+
+    @Test
+    @DisplayName("Should unite sets where both sets are empty")
+    void shouldUniteSetsWhereBothSetsAreEmpty() {
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      PowerSet set3 = set1.union(set2);
+
+      Assertions.assertEquals(0, set3.size());
     }
   }
 }

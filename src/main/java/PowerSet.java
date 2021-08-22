@@ -186,7 +186,25 @@ public class PowerSet {
 
   public PowerSet union(PowerSet set2) {
       // объединение текущего множества и set2
-      return null;
+      PowerSet result = new PowerSet();
+
+      for (int i = 0; i < slotsSize; i++) {
+        String value = this.getByIndex(i);
+
+        if (value == null) continue;
+
+        result.put(value);
+      }
+
+      for (int i = 0; i < slotsSize; i++) {
+        String value = set2.getByIndex(i);
+
+        if (value == null) continue;
+
+        result.put(value);
+      }
+
+      return result;
   }
 
   public PowerSet difference(PowerSet set2) {
