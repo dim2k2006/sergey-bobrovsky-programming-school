@@ -112,7 +112,7 @@ public class PowerSetTest {
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
 
-      int randomBound = 10;
+      int randomBound = 100;
 
       List<String> words = faker.lorem().words(randomBound);
 
@@ -145,6 +145,61 @@ public class PowerSetTest {
         Assertions.assertTrue(set1.get(value));
         Assertions.assertTrue(set2.get(value));
       }
+    }
+
+    @Test
+    @DisplayName("Should find intersection of sets where first set is empty")
+    void shouldFindIntersectionOfSetsWhereFirstSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+      PowerSet wordsSet = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words = faker.lorem().words(randomBound);
+
+      words.forEach(value -> {
+        set2.put(value);
+        wordsSet.put(value);
+      });
+
+      PowerSet unionSet = set1.intersection(set2);
+
+      Assertions.assertEquals(0, unionSet.size());
+    }
+
+    @Test
+    @DisplayName("Should find intersection of sets where second set is empty")
+    void shouldFindIntersectionOfSetsWhereSecondSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+      PowerSet wordsSet = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words = faker.lorem().words(randomBound);
+
+      words.forEach(value -> {
+        set1.put(value);
+        wordsSet.put(value);
+      });
+
+      PowerSet unionSet = set1.intersection(set2);
+
+      Assertions.assertEquals(0, unionSet.size());
+    }
+
+    @Test
+    @DisplayName("Should find intersection of sets where boths sets are empty")
+    void shouldFindIntersectionOfSetsWhereBothsSetsAreEmpty() {
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      PowerSet unionSet = set1.intersection(set2);
+
+      Assertions.assertEquals(0, unionSet.size());
     }
   }
 }
