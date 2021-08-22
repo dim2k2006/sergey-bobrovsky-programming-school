@@ -410,4 +410,89 @@ public class PowerSetTest {
       Assertions.assertEquals(0, set3.size());
     }
   }
+
+  @Nested
+  @DisplayName("isSubset method")
+  class IsSubsetMethod {
+    @Test
+    @DisplayName("Should find subset")
+    void shouldFindSubset() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+      PowerSet commonWordsSet = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> commonWords = faker.lorem().words(randomBound);
+      List<String> words1 = faker.lorem().words(randomBound);
+
+      commonWords.forEach(value -> {
+        set1.put(value);
+        set2.put(value);
+        commonWordsSet.put(value);
+      });
+
+      words1.forEach(value -> {
+        set1.put(value);
+      });
+
+      Assertions.assertTrue(set1.isSubset(set2));
+    }
+
+    @Test
+    @DisplayName("Should find subset where first set is empty")
+    void shouldFindSubsetWhereFirstSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+      PowerSet commonWordsSet = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> commonWords = faker.lorem().words(randomBound);
+
+      commonWords.forEach(value -> {
+        set2.put(value);
+        commonWordsSet.put(value);
+      });
+
+
+      Assertions.assertFalse(set1.isSubset(set2));
+    }
+
+    @Test
+    @DisplayName("Should find subset where second set is empty")
+    void shouldFindSubsetWhereSecondSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+      PowerSet commonWordsSet = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> commonWords = faker.lorem().words(randomBound);
+      List<String> words1 = faker.lorem().words(randomBound);
+
+      commonWords.forEach(value -> {
+        set1.put(value);
+        commonWordsSet.put(value);
+      });
+
+      words1.forEach(value -> {
+        set1.put(value);
+      });
+
+      Assertions.assertTrue(set1.isSubset(set2));
+    }
+
+    @Test
+    @DisplayName("Should find subset where both sets are empty")
+    void shouldFindSubsetWhereBothSetsAreEmpty() {
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      Assertions.assertTrue(set1.isSubset(set2));
+    }
+  }
 }

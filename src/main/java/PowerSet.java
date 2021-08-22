@@ -225,9 +225,19 @@ public class PowerSet {
   }
 
   public boolean isSubset(PowerSet set2) {
-      // возвращает true, если set2 есть
-      // подмножество текущего множества,
-      // иначе false
-      return false;
+    // возвращает true, если set2 есть
+    // подмножество текущего множества,
+    // иначе false
+    for (int i = 0; i < slotsSize; i++) {
+      String value = set2.getByIndex(i);
+
+      if (value == null) continue;
+
+      if (!this.get(value)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
