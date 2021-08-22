@@ -324,4 +324,90 @@ public class PowerSetTest {
       Assertions.assertEquals(0, set3.size());
     }
   }
+
+  @Nested
+  @DisplayName("difference method")
+  class DifferenceMethod {
+    @Test
+    @DisplayName("Should find diff between two sets")
+    void shouldFindDiffBetweenTwoSets() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words1 = faker.lorem().words(randomBound);
+      List<String> words2 = faker.lorem().words(randomBound);
+
+      words1.forEach(value -> {
+        set1.put(value);
+      });
+
+      words2.forEach(value -> {
+        set2.put(value);
+      });
+
+      PowerSet set3 = set1.difference(set2);
+
+      for (int i = 0; i < 20000; i++) {
+        String value = set3.getByIndex(i);
+
+        if (value == null) continue;
+
+        Assertions.assertFalse(set2.get(value));
+      }
+    }
+
+    @Test
+    @DisplayName("Should find diff between two sets where first set is empty")
+    void shouldFindDiffBetweenTwoSetsWhereFirstSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words2 = faker.lorem().words(randomBound);
+
+      words2.forEach(value -> {
+        set2.put(value);
+      });
+
+      PowerSet set3 = set1.difference(set2);
+
+      Assertions.assertEquals(0, set3.size());
+    }
+
+    @Test
+    @DisplayName("Should find diff between two sets where second set is empty")
+    void shouldFindDiffBetweenTwoSetsWhereSecondSetIsEmpty() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words1 = faker.lorem().words(randomBound);
+
+      words1.forEach(value -> {
+        set1.put(value);
+      });
+
+      PowerSet set3 = set1.difference(set2);
+
+      Assertions.assertEquals(set1.size(), set3.size());
+    }
+
+    @Test
+    @DisplayName("Should find diff between two sets where both sets are empty")
+    void shouldFindDiffBetweenTwoSetsWhereBothSetsAreEmpty() {
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      PowerSet set3 = set1.difference(set2);
+
+      Assertions.assertEquals(0, set3.size());
+    }
+  }
 }

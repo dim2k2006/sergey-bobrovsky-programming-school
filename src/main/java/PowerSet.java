@@ -208,8 +208,20 @@ public class PowerSet {
   }
 
   public PowerSet difference(PowerSet set2) {
-      // разница текущего множества и set2
-      return null;
+    // разница текущего множества и set2
+    PowerSet result = new PowerSet();
+
+    for (int i = 0; i < slotsSize; i++) {
+      String value = this.getByIndex(i);
+
+      if (value == null) continue;
+
+      if (!set2.get(value)) {
+        result.put(value);
+      }
+    }
+
+    return result;
   }
 
   public boolean isSubset(PowerSet set2) {
