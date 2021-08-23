@@ -1,111 +1,25 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class PowerSet {
-  public int slotsSize = 20000;
-  public int step = 3;
-  public String [] slots;
-  public int p = 239017;
+  public ArrayList<String> slots;
 
   public PowerSet() {
     // ваша реализация хранилища
-    slots = new String[slotsSize];
-    for(int i=0; i<slotsSize; i++) slots[i] = null;
-  }
-
-  public int hashFun(String value) {
-    // всегда возвращает корректный индекс слота
-    int hash = 0;
-
-    for (int n = 0; n < value.length(); n += 1) {
-      int charCode = value.charAt(n);
-
-      if (n == 0) {
-        hash = hash + charCode;
-
-        continue;
-      }
-
-      int multiplicationResult = (int) ((double) charCode * Math.pow(p, n));
-
-      hash = Math.abs(hash + multiplicationResult);
-    }
-
-    int result = hash % slotsSize;
-
-    return result;
-  }
-
-  public int seekSlot(String value) {
-    // находит индекс пустого слота для значения, или -1
-    int hash = hashFun(value);
-
-    if (slots[hash] == null) {
-      return hash;
-    }
-
-    int slotIndex = hash + step;
-    Hashtable<Integer, Boolean> visitedSlots = new Hashtable<Integer, Boolean>();
-
-    while (visitedSlots.size() != slots.length) {
-      if (visitedSlots.containsKey(slotIndex)) {
-        slotIndex = slotIndex + 1;
-
-        continue;
-      }
-
-      if (slotIndex > slots.length - 1) {
-        slotIndex = slotIndex - slots.length;
-
-        continue;
-      }
-
-      String val = slots[slotIndex];
-
-      if (val == null) {
-        return slotIndex;
-      }
-
-      visitedSlots.put(slotIndex, true);
-
-      slotIndex = slotIndex + step;
-    }
-
-    return -1;
+    slots = new ArrayList<String>();
   }
 
   public int find(String value) {
     // находит индекс слота со значением, или -1
-    int slotIndex = 0;
-    Hashtable<Integer, Boolean> visitedSlots = new Hashtable<Integer, Boolean>();
-
-    while (visitedSlots.size() != slots.length) {
-      if (visitedSlots.containsKey(slotIndex)) {
-        slotIndex = slotIndex + 1;
-
-        continue;
-      }
-
-      if (slotIndex > slots.length - 1) {
-        slotIndex = slotIndex - slots.length;
-
-        continue;
-      }
-
-      String slotValue = slots[slotIndex];
+    for (int i = 0; i < slots.size(); i++) {
+      String slotValue = slots.get(i);
 
       if (slotValue == null) {
-        visitedSlots.put(slotIndex, true);
-        slotIndex = slotIndex + step;
-
         continue;
       }
 
       if (slotValue.equals(value)) {
-        return slotIndex;
+        return i;
       }
-
-      visitedSlots.put(slotIndex, true);
-      slotIndex = slotIndex + step;
     }
 
     return -1;
@@ -113,11 +27,11 @@ public class PowerSet {
 
   public int size() {
     // количество элементов в множестве
-    int slotsLength = slots.length;
+    int slotsLength = slots.size();
     int result = 0;
 
     for (int i = 0; i < slotsLength; i++) {
-      String value = slots[i];
+      String value = slots.get(i);
 
       if (value == null) continue;
 
@@ -134,9 +48,7 @@ public class PowerSet {
 
     if (index != -1) return;
 
-    int slotIndex = seekSlot(value);
-
-    slots[slotIndex] = value;
+    slots.add(value);
   }
 
   public boolean get(String value) {
@@ -158,25 +70,21 @@ public class PowerSet {
 
     int slotIndex = find(value);
 
-    slots[slotIndex] = null;
+    slots.set(slotIndex, null);
 
     return true;
   }
 
   public String getByIndex(int index) {
-    return slots[index];
+    return slots.get(index);
   }
 
   public PowerSet intersection(PowerSet set2) {
     // пересечение текущего множества и set2
     PowerSet result = new PowerSet();
 
-    for (int i = 0; i < slotsSize; i++) {
-      String value = this.getByIndex(i);
-
-      if (value == null) continue;
-
-      if (this.get(value) && set2.get(value)) {
+    for (String value : slots) {
+      if (set2.get(value)) {
         result.put(value);
       }
     }
@@ -188,19 +96,11 @@ public class PowerSet {
       // объединение текущего множества и set2
       PowerSet result = new PowerSet();
 
-      for (int i = 0; i < slotsSize; i++) {
-        String value = this.getByIndex(i);
-
-        if (value == null) continue;
-
+      for (String value : slots) {
         result.put(value);
       }
 
-      for (int i = 0; i < slotsSize; i++) {
-        String value = set2.getByIndex(i);
-
-        if (value == null) continue;
-
+      for (String value : set2.slots) {
         result.put(value);
       }
 
@@ -211,11 +111,7 @@ public class PowerSet {
     // разница текущего множества и set2
     PowerSet result = new PowerSet();
 
-    for (int i = 0; i < slotsSize; i++) {
-      String value = this.getByIndex(i);
-
-      if (value == null) continue;
-
+    for (String value : slots) {
       if (!set2.get(value)) {
         result.put(value);
       }
@@ -228,10 +124,8 @@ public class PowerSet {
     // возвращает true, если set2 есть
     // подмножество текущего множества,
     // иначе false
-    for (int i = 0; i < slotsSize; i++) {
+    for (int i = 0; i < set2.size(); i++) {
       String value = set2.getByIndex(i);
-
-      if (value == null) continue;
 
       if (!this.get(value)) {
         return false;

@@ -137,10 +137,8 @@ public class PowerSetTest {
 
       PowerSet set3 = set1.intersection(set2);
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set3.size(); i++) {
         String value = set3.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set1.get(value));
         Assertions.assertTrue(set2.get(value));
@@ -164,9 +162,9 @@ public class PowerSetTest {
         wordsSet.put(value);
       });
 
-      PowerSet unionSet = set1.intersection(set2);
+      PowerSet set3 = set1.intersection(set2);
 
-      Assertions.assertEquals(0, unionSet.size());
+      Assertions.assertEquals(0, set3.size());
     }
 
     @Test
@@ -186,9 +184,9 @@ public class PowerSetTest {
         wordsSet.put(value);
       });
 
-      PowerSet unionSet = set1.intersection(set2);
+      PowerSet set3 = set1.intersection(set2);
 
-      Assertions.assertEquals(0, unionSet.size());
+      Assertions.assertEquals(0, set3.size());
     }
 
     @Test
@@ -228,18 +226,14 @@ public class PowerSetTest {
 
       PowerSet set3 = set1.union(set2);
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set1.size(); i++) {
         String value = set1.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set3.get(value));
       }
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set2.size(); i++) {
         String value = set2.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set3.get(value));
       }
@@ -262,18 +256,14 @@ public class PowerSetTest {
 
       PowerSet set3 = set1.union(set2);
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set1.size(); i++) {
         String value = set1.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set3.get(value));
       }
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set2.size(); i++) {
         String value = set2.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set3.get(value));
       }
@@ -296,18 +286,14 @@ public class PowerSetTest {
 
       PowerSet set3 = set1.union(set2);
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set1.size(); i++) {
         String value = set1.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set3.get(value));
       }
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set2.size(); i++) {
         String value = set2.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertTrue(set3.get(value));
       }
@@ -350,10 +336,8 @@ public class PowerSetTest {
 
       PowerSet set3 = set1.difference(set2);
 
-      for (int i = 0; i < 20000; i++) {
+      for (int i = 0; i < set3.size(); i++) {
         String value = set3.getByIndex(i);
-
-        if (value == null) continue;
 
         Assertions.assertFalse(set2.get(value));
       }
