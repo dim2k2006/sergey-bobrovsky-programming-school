@@ -404,7 +404,6 @@ public class PowerSetTest {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
-      PowerSet commonWordsSet = new PowerSet();
 
       int randomBound = 100;
 
@@ -414,7 +413,6 @@ public class PowerSetTest {
       commonWords.forEach(value -> {
         set1.put(value);
         set2.put(value);
-        commonWordsSet.put(value);
       });
 
       words1.forEach(value -> {
@@ -425,12 +423,35 @@ public class PowerSetTest {
     }
 
     @Test
+    @DisplayName("Should not find subset")
+    void shouldNotFindSubset() {
+      Faker faker = new Faker();
+      PowerSet set1 = new PowerSet();
+      PowerSet set2 = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> commonWords = faker.lorem().words(randomBound);
+      List<String> words2 = faker.lorem().words(randomBound);
+
+      commonWords.forEach(value -> {
+        set1.put(value);
+        set2.put(value);
+      });
+
+      words2.forEach(value -> {
+        set2.put(value);
+      });
+
+      Assertions.assertFalse(set1.isSubset(set2));
+    }
+
+    @Test
     @DisplayName("Should find subset where first set is empty")
     void shouldFindSubsetWhereFirstSetIsEmpty() {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
-      PowerSet commonWordsSet = new PowerSet();
 
       int randomBound = 100;
 
@@ -438,9 +459,7 @@ public class PowerSetTest {
 
       commonWords.forEach(value -> {
         set2.put(value);
-        commonWordsSet.put(value);
       });
-
 
       Assertions.assertFalse(set1.isSubset(set2));
     }
@@ -451,7 +470,6 @@ public class PowerSetTest {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
-      PowerSet commonWordsSet = new PowerSet();
 
       int randomBound = 100;
 
@@ -460,7 +478,6 @@ public class PowerSetTest {
 
       commonWords.forEach(value -> {
         set1.put(value);
-        commonWordsSet.put(value);
       });
 
       words1.forEach(value -> {
