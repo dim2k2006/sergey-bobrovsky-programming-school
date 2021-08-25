@@ -124,6 +124,10 @@ public class PowerSet {
     // возвращает true, если set2 есть
     // подмножество текущего множества,
     // иначе false
+    if (this.size() == 0 && set2.size() == 0) {
+      return false;
+    }
+
     for (int i = 0; i < set2.size(); i++) {
       String value = set2.getByIndex(i);
 

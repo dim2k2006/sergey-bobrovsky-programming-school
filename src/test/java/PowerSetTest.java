@@ -399,8 +399,8 @@ public class PowerSetTest {
   @DisplayName("isSubset method")
   class IsSubsetMethod {
     @Test
-    @DisplayName("Should find subset")
-    void shouldFindSubset() {
+    @DisplayName("Should return true")
+    void shouldReturnTrue() {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
@@ -423,8 +423,8 @@ public class PowerSetTest {
     }
 
     @Test
-    @DisplayName("Should not find subset")
-    void shouldNotFindSubset() {
+    @DisplayName("Should return false")
+    void shouldReturnFalse() {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
@@ -447,8 +447,8 @@ public class PowerSetTest {
     }
 
     @Test
-    @DisplayName("Should find subset where first set is empty")
-    void shouldFindSubsetWhereFirstSetIsEmpty() {
+    @DisplayName("Should return false when first set is empty")
+    void shouldReturnFalseWhenFirstSetIsEmpty() {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
@@ -465,8 +465,8 @@ public class PowerSetTest {
     }
 
     @Test
-    @DisplayName("Should find subset where second set is empty")
-    void shouldFindSubsetWhereSecondSetIsEmpty() {
+    @DisplayName("Should return true when second set is empty")
+    void shouldReturnTrueWhenSecondSetIsEmpty() {
       Faker faker = new Faker();
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
@@ -488,12 +488,12 @@ public class PowerSetTest {
     }
 
     @Test
-    @DisplayName("Should find subset where both sets are empty")
-    void shouldFindSubsetWhereBothSetsAreEmpty() {
+    @DisplayName("Should return false when both sets are empty")
+    void shouldReturnFalseWhenBothSetsAreEmpty() {
       PowerSet set1 = new PowerSet();
       PowerSet set2 = new PowerSet();
 
-      Assertions.assertTrue(set1.isSubset(set2));
+      Assertions.assertFalse(set1.isSubset(set2));
     }
   }
 }
