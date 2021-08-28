@@ -495,5 +495,22 @@ public class PowerSetTest {
 
       Assertions.assertFalse(set1.isSubset(set2));
     }
+
+    @Test
+    @DisplayName("Should return true when set is a subset of itself")
+    void shouldReturnTrueWhenSetIsSubsetOfItself() {
+      Faker faker = new Faker();
+      PowerSet set = new PowerSet();
+
+      int randomBound = 100;
+
+      List<String> words = faker.lorem().words(randomBound);
+
+      words.forEach(value -> {
+        set.put(value);
+      });
+
+      Assertions.assertTrue(set.isSubset(set));
+    }
   }
 }
