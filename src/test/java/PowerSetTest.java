@@ -1,5 +1,6 @@
 import com.github.javafaker.Faker;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.junit.jupiter.api.Assertions;
@@ -499,15 +500,25 @@ public class PowerSetTest {
     @Test
     @DisplayName("Should return true when set is a subset of itself")
     void shouldReturnTrueWhenSetIsSubsetOfItself() {
-      Faker faker = new Faker();
       PowerSet set = new PowerSet();
 
-      int wordsCount = 100;
+      int itemsCount = 10000;
+      int slicedItemsCount = 9000;
 
-      List<String> words = faker.lorem().words(wordsCount);
+      ArrayList<String> items = new ArrayList<String>();
 
-      words.forEach(value -> {
+      for (int i = 0; i < itemsCount; i += 1 ) {
+        items.add(Integer.toString(i));
+      }
+
+      items.forEach(value -> {
         set.put(value);
+      });
+
+      List<String> slicedItems = items.subList(0, slicedItemsCount);
+
+      slicedItems.forEach(value -> {
+        set.remove(value);
       });
 
       Assertions.assertTrue(set.isSubset(set));

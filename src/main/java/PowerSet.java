@@ -70,7 +70,7 @@ public class PowerSet {
 
     int slotIndex = find(value);
 
-    slots.set(slotIndex, null);
+    slots.remove(slotIndex);
 
     return true;
   }
