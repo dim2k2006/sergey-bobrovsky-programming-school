@@ -502,9 +502,9 @@ public class PowerSetTest {
       Faker faker = new Faker();
       PowerSet set = new PowerSet();
 
-      int randomBound = 100;
+      int wordsCount = 100;
 
-      List<String> words = faker.lorem().words(randomBound);
+      List<String> words = faker.lorem().words(wordsCount);
 
       words.forEach(value -> {
         set.put(value);
