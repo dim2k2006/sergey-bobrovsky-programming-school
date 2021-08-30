@@ -24,7 +24,7 @@ public class BloomFilter {
     for(int i=0; i<str1.length(); i++) {
         int code = (int)str1.charAt(i);
 
-        hash = (hash * 17) + code;
+        hash = Math.abs((hash * 17) + code);
     }
 
     int result = hash % filter_len;
