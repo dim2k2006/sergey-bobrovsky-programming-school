@@ -12,8 +12,6 @@ public class BloomFilter {
     for (int i = 0; i < filter_len; i++) {
       slots.add(0);
     }
-
-    System.out.println("slots.size(): " + slots.size());
   }
 
   // хэш-функции
@@ -51,10 +49,6 @@ public class BloomFilter {
     // добавляем строку str1 в фильтр
     int index1 = hash1(value);
     int index2 = hash2(value);
-
-    System.out.println("value: " + value);
-    System.out.println("index1: " + index1);
-    System.out.println("index2: " + index2);
 
     slots.set(index1, 1);
     slots.set(index2, 1);
