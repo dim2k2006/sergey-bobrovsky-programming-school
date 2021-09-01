@@ -1,17 +1,13 @@
-import java.util.ArrayList;
+import java.util.BitSet;
 
 public class BloomFilter {
   public int filter_len;
-  public ArrayList<Integer> slots;
+  public BitSet slots;
 
   public BloomFilter(int f_len) {
     filter_len = f_len;
     // создаём битовый массив длиной f_len ...
-    slots = new ArrayList<Integer>();
-
-    for (int i = 0; i < filter_len; i++) {
-      slots.add(0);
-    }
+    slots = new BitSet(filter_len);
   }
 
   // хэш-функции
@@ -50,8 +46,8 @@ public class BloomFilter {
     int index1 = hash1(value);
     int index2 = hash2(value);
 
-    slots.set(index1, 1);
-    slots.set(index2, 1);
+    slots.set(index1);
+    slots.set(index2);
   }
 
   public boolean isValue(String value) {
@@ -59,10 +55,7 @@ public class BloomFilter {
     int index1 = hash1(value);
     int index2 = hash2(value);
 
-    int value1 = slots.get(index1);
-    int value2 = slots.get(index2);
-
-    if (value1 == 1 && value2 == 1) return true;
+    if (slots.get(index1) && slots.get(index2)) return true;
 
     return false;
   }
