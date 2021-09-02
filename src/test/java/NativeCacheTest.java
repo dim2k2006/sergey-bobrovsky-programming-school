@@ -25,6 +25,29 @@ public class NativeCacheTest {
       Assertions.assertEquals(3, cache.hits.size());
     }
   }
+
+  @Nested
+  @DisplayName("get method")
+  class GetMethod {
+    @Test
+    @DisplayName("Should get value from the cache")
+    void shouldGetValueFromTheCache() {
+      Faker faker = new Faker();
+      NativeCache<String> cache = new NativeCache<String>(20);
+
+      String key = "key1";
+
+      cache.put(key, faker.lorem().word());
+
+      cache.get(key);
+
+      Assertions.assertEquals(1, cache.getHitsByKey(key));
+
+      cache.get(key);
+
+      Assertions.assertEquals(2, cache.getHitsByKey(key));
+    }
+  }
 }
 
 
