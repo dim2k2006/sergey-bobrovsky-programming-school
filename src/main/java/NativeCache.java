@@ -13,14 +13,39 @@ public class NativeCache<T> {
   }
 
   public void put(String key, T value) {
+    int currentSize = values.size();
+    int nextSize = currentSize + 1;
+
+    if (nextSize <= size) {
+      values.put(key, value);
+      hits.put(key, 0);
+
+      return;
+    }
+
+    String keyWithLowestHits = null;
+
+    for (String hitsKey : hits.keySet()) {
+      if (keyWithLowestHits == null) {
+        keyWithLowestHits = hitsKey;
+
+        continue;
+      }
+
+      if (hits.get(hitsKey) < hits.get(keyWithLowestHits)) {
+        keyWithLowestHits = hitsKey;
+      }
+    }
+
+    values.remove(keyWithLowestHits);
+    hits.remove(keyWithLowestHits);
+
     values.put(key, value);
     hits.put(key, 0);
   }
 
   public T get(String key) {
-    T result = values.get(key);
-
-    if (result == null) return null;
+    if (!values.containsKey(key)) return null;
 
     int hitsCount = hits.get(key);
 
